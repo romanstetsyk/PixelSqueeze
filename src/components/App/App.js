@@ -1,4 +1,4 @@
-import { DragDrop } from "components";
+import { DragDrop, ImageList } from "components";
 import { useState } from "react";
 
 export const App = () => {
@@ -8,5 +8,10 @@ export const App = () => {
     setFiles(prev => prev.concat(files));
   };
 
-  return <DragDrop addFilesToState={addFilesToState} />;
+  return (
+    <>
+      <DragDrop addFilesToState={addFilesToState} />
+      <ImageList files={files} />
+    </>
+  );
 };
