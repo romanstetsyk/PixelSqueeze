@@ -12,5 +12,15 @@ export const ImageComparison = ({ activeFile }) => {
     return () => URL.revokeObjectURL(url);
   }, [urlMemo, url]);
 
-  return <>{url && <img src={url} alt="" />}</>;
+  return (
+    <>
+      <form>
+        <label>
+          Quality: <input type="number" min={1} max={100} step={1} />
+        </label>
+        <button type="submit">Change</button>
+      </form>
+      {url && <img src={url} alt="" />}
+    </>
+  );
 };

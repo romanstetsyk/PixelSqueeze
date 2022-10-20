@@ -3,11 +3,12 @@ import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { StyledDiv } from "./DragDrop.styled";
 
-export const DragDrop = ({ addFilesToState }) => {
+export const DragDrop = ({ addFilesToState, changeFile }) => {
   const DEFAULT_QUALITY = 1;
 
   const onDrop = useCallback(
     acceptedFiles => {
+      addFilesToState(acceptedFiles);
       console.log(acceptedFiles);
 
       acceptedFiles.forEach(file => {
@@ -25,7 +26,11 @@ export const DragDrop = ({ addFilesToState }) => {
           canvas.height = height;
           context.drawImage(img, 0, 0, width, height);
           canvas.toBlob(
-            blob => (file.blob = blob),
+            blob => {
+              file.blob = blob;
+              file.sizeCompressed = blob.size;
+              changeFile(file.id, file);
+            },
             "image/jpeg",
             DEFAULT_QUALITY / 100 // Quality as a decimal
           );
@@ -33,10 +38,8 @@ export const DragDrop = ({ addFilesToState }) => {
         // fire the img event handler
         img.src = URL.createObjectURL(file);
       });
-
-      addFilesToState(acceptedFiles);
     },
-    [addFilesToState]
+    [addFilesToState, changeFile]
   );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
