@@ -1,4 +1,8 @@
 export const ImageList = ({ files, removeFile, selectFileForComparison }) => {
+  const formatFileSize = numOfBytes => {
+    return `${(numOfBytes / 1000).toFixed(2)}Kb`;
+  };
+
   return (
     <ul>
       {files.map(file => (
@@ -6,7 +10,8 @@ export const ImageList = ({ files, removeFile, selectFileForComparison }) => {
           <button type="button" onClick={() => removeFile(file.id)}>
             Remove
           </button>{" "}
-          {file.name} {file.sizeCompressed}{" "}
+          {file.name} {formatFileSize(file.size)} {"->"}{" "}
+          {formatFileSize(file.sizeCompressed)}{" "}
           <button onClick={() => selectFileForComparison(file)}>Open</button>
         </li>
       ))}
