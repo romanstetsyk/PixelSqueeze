@@ -1,5 +1,5 @@
-function App() {
-  return <div>hello</div>;
-}
+import { DragDrop } from "components";
 
-export default App;
+export const App = () => {
+  return <DragDrop />;
+};
