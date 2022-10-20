@@ -20,7 +20,7 @@ export const App = () => {
   };
 
   const removeFile = id => {
-    if (activeFile.id === id) setActiveFile(null);
+    if (activeFile && activeFile.id === id) setActiveFile(null);
     setFiles(prev => prev.filter(f => f.id !== id));
   };
 
