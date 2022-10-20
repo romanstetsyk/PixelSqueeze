@@ -4,11 +4,40 @@ import { useDropzone } from "react-dropzone";
 import { StyledDiv } from "./DragDrop.styled";
 
 export const DragDrop = ({ addFilesToState }) => {
-  const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles);
-    acceptedFiles.forEach(file => (file.id = nanoid()));
-    addFilesToState(acceptedFiles);
-  }, []);
+  const DEFAULT_QUALITY = 1;
+
+  const onDrop = useCallback(
+    acceptedFiles => {
+      console.log(acceptedFiles);
+
+      acceptedFiles.forEach(file => {
+        // Add id to file
+        file.id = nanoid();
+        file.quality = DEFAULT_QUALITY;
+        // Compress file
+        let img = new Image();
+        // img event handler
+        img.onload = () => {
+          const [width, height] = [img.width, img.height];
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          canvas.width = width;
+          canvas.height = height;
+          context.drawImage(img, 0, 0, width, height);
+          canvas.toBlob(
+            blob => (file.blob = blob),
+            "image/jpeg",
+            DEFAULT_QUALITY / 100 // Quality as a decimal
+          );
+        };
+        // fire the img event handler
+        img.src = URL.createObjectURL(file);
+      });
+
+      addFilesToState(acceptedFiles);
+    },
+    [addFilesToState]
+  );
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 

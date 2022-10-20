@@ -3,8 +3,7 @@ export const ImageList = ({ files }) => {
     <ul>
       {files.map(file => (
         <li key={file.id}>
-          {file.name} {file.size}
-          {/* <img src={URL.createObjectURL(file)} alt="" /> */}
+          {file.name} {file.size} <button>Open</button>
         </li>
       ))}
     </ul>
