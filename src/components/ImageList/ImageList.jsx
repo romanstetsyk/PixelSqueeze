@@ -1,9 +1,10 @@
-export const ImageList = ({ files }) => {
+export const ImageList = ({ files, selectFileForComparison }) => {
   return (
     <ul>
       {files.map(file => (
         <li key={file.id}>
-          {file.name} {file.size} <button>Open</button>
+          {file.name} {file.size}{" "}
+          <button onClick={() => selectFileForComparison(file)}>Open</button>
         </li>
       ))}
     </ul>
