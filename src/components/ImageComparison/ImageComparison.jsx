@@ -30,11 +30,19 @@ export const ImageComparison = ({ activeFile }) => {
         </label>
         <button type="submit">Change</button>
       </form>
-      {/* {url && <img src={url} alt="" />} */}
-      <img-comparison-slider>
-        <img slot="first" src={urlOriginal} alt="Original" />
-        <img slot="second" src={urlCompressed} alt="Modified" />
-      </img-comparison-slider>
+
+      <div>
+        <img-comparison-slider class="coloured-slider">
+          <figure slot="first" class="before">
+            <img width="100%" src={urlOriginal} alt="" />
+            <figcaption>Before</figcaption>
+          </figure>
+          <figure slot="second" class="after">
+            <img width="100%" src={urlCompressed} alt="" />
+            <figcaption>After</figcaption>
+          </figure>
+        </img-comparison-slider>
+      </div>
     </>
   );
 };

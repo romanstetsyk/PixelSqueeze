@@ -21,3 +21,47 @@ ul {
 img {
   display: block;
 }
+
+.coloured-slider {
+  --divider-width: 1px;
+  --default-handle-width: clamp(40px, 10vw, 200px);
+  --default-handle-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+  --divider-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.coloured-slider {
+  transition: box-shadow 200ms ease-in-out;
+}
+
+.coloured-slider:focus {
+  outline: none;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.2),
+    1px 2px 3px rgba(0, 0, 0, 0.7);
+}
+
+.before,
+.after {
+  margin: 0;
+}
+
+.before figcaption,
+.after figcaption {
+  background: #fff;
+  border: 1px solid #c0c0c0;
+  border-radius: 0.75em;
+  color: #2e3452;
+  opacity: 0.8;
+  padding: 0.75em;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 100%;
+}
+
+.before figcaption {
+  left: 0.75em;
+}
+
+.after figcaption {
+  right: 0.75em;
+}

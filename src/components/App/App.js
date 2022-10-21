@@ -1,5 +1,6 @@
 import { DragDrop, ImageList, ImageComparison } from "components";
 import { useState } from "react";
+import { Container, Section } from "./App.styled";
 
 export const App = () => {
   const [files, setFiles] = useState([]);
@@ -26,13 +27,23 @@ export const App = () => {
 
   return (
     <>
-      <DragDrop addFilesToState={addFilesToState} changeFile={changeFile} />
-      <ImageList
-        files={files}
-        removeFile={removeFile}
-        selectFileForComparison={selectFileForComparison}
-      />
-      {activeFile && <ImageComparison activeFile={activeFile} />}
+      <Section>
+        <Container>
+          <DragDrop addFilesToState={addFilesToState} changeFile={changeFile} />
+        </Container>
+        <Container>
+          <ImageList
+            files={files}
+            removeFile={removeFile}
+            selectFileForComparison={selectFileForComparison}
+          />
+        </Container>
+      </Section>
+      <Section>
+        <Container>
+          {activeFile && <ImageComparison activeFile={activeFile} />}
+        </Container>
+      </Section>
     </>
   );
 };
