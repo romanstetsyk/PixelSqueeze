@@ -3,37 +3,53 @@ import { useState } from "react";
 import { Container, Section } from "./App.styled";
 
 export const App = () => {
-  const [files, setFiles] = useState([]);
-  const [activeFile, setActiveFile] = useState(null);
+  const [originalFiles, setOriginalFiles] = useState([]);
+  const [compressedFiles, setCompressedFiles] = useState([]);
+  const [activeFileOriginal, setActiveFileOriginal] = useState(null);
+  const [activeFileCompressed, setActiveFileCompressed] = useState(null);
 
-  const addFilesToState = files => {
-    setFiles(prev => prev.concat(files));
+  const addOriginalFiles = files => {
+    setOriginalFiles(prev => prev.concat(files));
   };
 
-  const changeFile = (id, updFile) => {
-    setFiles(prev =>
-      prev.map(oldFile => (oldFile.id === id ? updFile : oldFile))
+  const addCompressedFiles = files => {
+    setCompressedFiles(prev => prev.concat(files));
+  };
+
+  const changeCompressedFile = (id, updFile) => {
+    setCompressedFiles(prev =>
+      prev.map(oldFile => {
+        // console.log(oldFile === updFile);
+        return oldFile.id === id ? updFile : oldFile;
+      })
     );
   };
 
-  const selectFileForComparison = file => {
-    setActiveFile(file);
+  const selectFileForComparison = id => {
+    setActiveFileOriginal(originalFiles.find(e => e.id === id));
+    setActiveFileCompressed(compressedFiles.find(e => e.id === id));
   };
 
   const removeFile = id => {
-    if (activeFile && activeFile.id === id) setActiveFile(null);
-    setFiles(prev => prev.filter(f => f.id !== id));
+    if (activeFileOriginal?.id === id) setActiveFileOriginal(null);
+    if (activeFileCompressed?.id === id) setActiveFileCompressed(null);
+    setOriginalFiles(prev => prev.filter(f => f.id !== id));
+    setCompressedFiles(prev => prev.filter(f => f.id !== id));
   };
 
   return (
     <>
       <Section>
         <Container>
-          <DragDrop addFilesToState={addFilesToState} changeFile={changeFile} />
+          <DragDrop
+            addOriginalFiles={addOriginalFiles}
+            addCompressedFiles={addCompressedFiles}
+          />
         </Container>
         <Container>
           <ImageList
-            files={files}
+            originalFiles={originalFiles}
+            compressedFiles={compressedFiles}
             removeFile={removeFile}
             selectFileForComparison={selectFileForComparison}
           />
@@ -41,7 +57,12 @@ export const App = () => {
       </Section>
       <Section>
         <Container>
-          {activeFile && <ImageComparison activeFile={activeFile} />}
+          {activeFileCompressed && (
+            <ImageComparison
+              activeFileOriginal={activeFileOriginal}
+              activeFileCompressed={activeFileCompressed}
+            />
+          )}
         </Container>
       </Section>
     </>

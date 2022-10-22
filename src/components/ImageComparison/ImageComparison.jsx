@@ -1,17 +1,20 @@
 import "img-comparison-slider";
 import { useEffect, useMemo, useState } from "react";
 
-export const ImageComparison = ({ activeFile }) => {
+export const ImageComparison = ({
+  activeFileOriginal,
+  activeFileCompressed,
+}) => {
   const [urlOriginal, setUrlOriginal] = useState(null);
   const [urlCompressed, setUrlCompressed] = useState(null);
 
   const urlOriginalMemo = useMemo(() => {
-    return URL.createObjectURL(activeFile);
-  }, [activeFile]);
+    return URL.createObjectURL(activeFileOriginal);
+  }, [activeFileOriginal]);
 
   const urlCompressedMemo = useMemo(() => {
-    return URL.createObjectURL(activeFile.blob);
-  }, [activeFile.blob]);
+    return URL.createObjectURL(activeFileCompressed);
+  }, [activeFileCompressed]);
 
   useEffect(() => {
     setUrlOriginal(urlOriginalMemo);
