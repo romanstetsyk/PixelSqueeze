@@ -37,7 +37,7 @@ export const ImageList = ({
             <p>
               Size: {formatFileSize(file.size)} &rarr;{" "}
               {!cf ? "loading" : formatFileSize(cf.size)} (
-              {calcSizeChange(file.size, cf.size)})
+              {cf && calcSizeChange(file.size, cf.size)})
             </p>
 
             {cf && (

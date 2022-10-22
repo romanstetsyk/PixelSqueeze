@@ -18,11 +18,9 @@ export const App = () => {
 
   const changeCompressedFile = (id, updFile) => {
     setCompressedFiles(prev =>
-      prev.map(oldFile => {
-        // console.log(oldFile === updFile);
-        return oldFile.id === id ? updFile : oldFile;
-      })
+      prev.map(oldFile => (oldFile.id === id ? updFile : oldFile))
     );
+    setActiveFileCompressed(updFile);
   };
 
   const selectFileForComparison = id => {
@@ -61,6 +59,7 @@ export const App = () => {
             <ImageComparison
               activeFileOriginal={activeFileOriginal}
               activeFileCompressed={activeFileCompressed}
+              changeCompressedFile={changeCompressedFile}
             />
           )}
         </Container>
