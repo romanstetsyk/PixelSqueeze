@@ -52,7 +52,7 @@ export const App = () => {
             selectFileForComparison={selectFileForComparison}
           />
         </Container>
-        {compressedFiles && (
+        {compressedFiles.length > 0 && (
           <Container>
             <DownloadZip compressedFiles={compressedFiles} />
           </Container>
