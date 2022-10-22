@@ -11,7 +11,14 @@ export const ImageList = ({ files, removeFile, selectFileForComparison }) => {
             Remove
           </button>{" "}
           {file.name} {formatFileSize(file.size)} {"->"}{" "}
-          {formatFileSize(file.sizeCompressed)}{" "}
+          {!file.sizeCompressed
+            ? "loading"
+            : formatFileSize(file.sizeCompressed)}
+          {file.sizeCompressed && (
+            <a href={URL.createObjectURL(file.blob)} download>
+              download
+            </a>
+          )}
           <button onClick={() => selectFileForComparison(file)}>Open</button>
         </li>
       ))}

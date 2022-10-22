@@ -33,11 +33,11 @@ export const ImageComparison = ({ activeFile }) => {
 
       <div>
         <img-comparison-slider class="coloured-slider">
-          <figure slot="first" class="before">
+          <figure slot="first" className="before">
             <img width="100%" src={urlOriginal} alt="" />
             <figcaption>Before</figcaption>
           </figure>
-          <figure slot="second" class="after">
+          <figure slot="second" className="after">
             <img width="100%" src={urlCompressed} alt="" />
             <figcaption>After</figcaption>
           </figure>
