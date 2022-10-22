@@ -39,6 +39,11 @@ export const App = () => {
     <>
       <Section>
         <Container>
+          <h1>PixelSqueeze</h1>
+        </Container>
+      </Section>
+      <Section>
+        <Container>
           <DragDrop
             addOriginalFiles={addOriginalFiles}
             addCompressedFiles={addCompressedFiles}

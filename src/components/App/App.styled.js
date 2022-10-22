@@ -5,5 +5,14 @@ export const Section = styled.section`
 `;
 
 export const Container = styled.div`
+  margin: 0 auto;
   padding: 0 1rem;
+
+  @media all and (min-width: 1200px) {
+    max-width: 80em;
+  }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
 `;
