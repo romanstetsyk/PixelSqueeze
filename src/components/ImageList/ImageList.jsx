@@ -1,3 +1,5 @@
+import { List, ListItem } from "./ImageList.styled";
+
 export const ImageList = ({
   originalFiles,
   compressedFiles,
@@ -8,6 +10,10 @@ export const ImageList = ({
     return `${(numOfBytes / 1000).toFixed(2)}Kb`;
   };
 
+  const calcSizeChange = (prevSize, newSize) => {
+    return `${((newSize / prevSize - 1) * 100).toFixed(1)}%`;
+  };
+
   const createFileName = (filename, quality) => {
     const indexOfLastDot = filename.lastIndexOf(".");
     const name = filename.slice(0, indexOfLastDot);
@@ -16,31 +22,41 @@ export const ImageList = ({
   };
 
   return (
-    <ul>
+    <List>
       {originalFiles.map(file => {
         const cf = compressedFiles.find(e => e.id === file.id);
 
         return (
-          <li key={file.id}>
-            <button type="button" onClick={() => removeFile(file.id)}>
-              Remove
-            </button>{" "}
-            {file.name} {formatFileSize(file.size)} {"->"}{" "}
-            {!cf ? "loading" : formatFileSize(cf.size)}
+          <ListItem key={file.id}>
+            <div>
+              <p>Name: {file.name}</p>
+              <button type="button" onClick={() => removeFile(file.id)}>
+                Remove
+              </button>{" "}
+            </div>
+            <p>
+              Size: {formatFileSize(file.size)} &rarr;{" "}
+              {!cf ? "loading" : formatFileSize(cf.size)} (
+              {calcSizeChange(file.size, cf.size)})
+            </p>
+
             {cf && (
-              <a
-                href={URL.createObjectURL(cf)}
-                download={createFileName(cf.name, cf.quality)}
-              >
-                Download
-              </a>
+              <div>
+                Quality: {cf.quality}%{" "}
+                <a
+                  href={URL.createObjectURL(cf)}
+                  download={createFileName(cf.name, cf.quality)}
+                >
+                  Download
+                </a>
+                <button onClick={() => selectFileForComparison(file.id)}>
+                  Open
+                </button>
+              </div>
             )}
-            <button onClick={() => selectFileForComparison(file.id)}>
-              Open
-            </button>
-          </li>
+          </ListItem>
         );
       })}
-    </ul>
+    </List>
   );
 };
