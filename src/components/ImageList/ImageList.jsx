@@ -11,14 +11,23 @@ export const ImageList = ({
   };
 
   const calcSizeChange = (prevSize, newSize) => {
-    return `${((newSize / prevSize - 1) * 100).toFixed(1)}%`;
+    const change = Math.abs(newSize / prevSize - 1);
+    const sign = prevSize > newSize ? "-" : "+";
+    return `${sign}${(change * 100).toFixed(1)}%`;
   };
 
-  const createFileName = (filename, quality) => {
-    const indexOfLastDot = filename.lastIndexOf(".");
-    const name = filename.slice(0, indexOfLastDot);
-    const ext = filename.slice(indexOfLastDot);
-    return `${name}_q${quality}${ext}`;
+  const createFileName = file => {
+    console.log(file);
+    const { name, type, quality } = file;
+
+    // e.g. filename.ext
+    const indexOfLastDot = name.lastIndexOf(".");
+    const filename = name.slice(0, indexOfLastDot);
+
+    // e.g. image/webp
+    const indexOfLastSlash = type.lastIndexOf("/");
+    const ext = type.slice(indexOfLastSlash + 1);
+    return `${filename}_q${quality}.${ext}`;
   };
 
   return (
@@ -42,11 +51,9 @@ export const ImageList = ({
 
             {cf && (
               <div>
-                Quality: {cf.quality}%{" "}
-                <a
-                  href={URL.createObjectURL(cf)}
-                  download={createFileName(cf.name, cf.quality)}
-                >
+                <p>Quality: {cf.quality}% </p>
+                <p>Type: {cf.type}</p>
+                <a href={URL.createObjectURL(cf)} download={createFileName(cf)}>
                   Download
                 </a>
                 <button onClick={() => selectFileForComparison(file.id)}>

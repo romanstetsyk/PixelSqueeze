@@ -9,6 +9,7 @@ export const ImageComparison = ({
   const [urlOriginal, setUrlOriginal] = useState(null);
   const [urlCompressed, setUrlCompressed] = useState(null);
   const [quality, setQuality] = useState(activeFileCompressed.quality);
+  const [format, setFormat] = useState(activeFileCompressed.type);
 
   // prevent recreating urls in infinite loop
   const urlOriginalMemo = useMemo(() => {
@@ -33,10 +34,16 @@ export const ImageComparison = ({
     setQuality(val);
   };
 
+  const changeInputFormat = e => {
+    const val = e.currentTarget.value;
+    setFormat(val);
+  };
+
   // Make quality change when props change
   useEffect(() => {
     setQuality(activeFileCompressed.quality);
-  }, [activeFileCompressed.quality]);
+    setFormat(activeFileCompressed.type);
+  }, [activeFileCompressed.quality, activeFileCompressed.type]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -52,14 +59,14 @@ export const ImageComparison = ({
       canvas.toBlob(
         blob => {
           const clone = new File([blob], activeFileOriginal.name, {
-            type: activeFileOriginal.type,
+            type: format,
           });
           clone.id = activeFileCompressed.id;
           clone.quality = quality;
           changeCompressedFile(activeFileCompressed.id, clone); // Changes compressedFiles state
           URL.revokeObjectURL(img.src);
         },
-        "image/jpeg",
+        format,
         quality / 100 // Quality as a decimal
       );
     };
@@ -81,6 +88,14 @@ export const ImageComparison = ({
             step={1}
             value={quality}
           />
+        </label>
+        <label>
+          Format:{" "}
+          <select name="format" onChange={changeInputFormat} value={format}>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/png">PNG</option>
+          </select>
         </label>
         <button type="submit">Change</button>
       </form>
