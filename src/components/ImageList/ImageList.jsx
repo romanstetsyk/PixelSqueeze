@@ -1,4 +1,5 @@
 import { List, ListItem } from "./ImageList.styled";
+import { createFileName } from "utils";
 
 export const ImageList = ({
   originalFiles,
@@ -14,20 +15,6 @@ export const ImageList = ({
     const change = Math.abs(newSize / prevSize - 1);
     const sign = prevSize > newSize ? "-" : "+";
     return `${sign}${(change * 100).toFixed(1)}%`;
-  };
-
-  const createFileName = file => {
-    console.log(file);
-    const { name, type, quality } = file;
-
-    // e.g. filename.ext
-    const indexOfLastDot = name.lastIndexOf(".");
-    const filename = name.slice(0, indexOfLastDot);
-
-    // e.g. image/webp
-    const indexOfLastSlash = type.lastIndexOf("/");
-    const ext = type.slice(indexOfLastSlash + 1);
-    return `${filename}_q${quality}.${ext}`;
   };
 
   return (

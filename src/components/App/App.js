@@ -1,4 +1,4 @@
-import { DragDrop, ImageList, ImageComparison } from "components";
+import { DragDrop, ImageList, ImageComparison, DownloadZip } from "components";
 import { useState } from "react";
 import { Container, Section } from "./App.styled";
 
@@ -52,6 +52,11 @@ export const App = () => {
             selectFileForComparison={selectFileForComparison}
           />
         </Container>
+        {compressedFiles && (
+          <Container>
+            <DownloadZip compressedFiles={compressedFiles} />
+          </Container>
+        )}
       </Section>
       <Section>
         <Container>
