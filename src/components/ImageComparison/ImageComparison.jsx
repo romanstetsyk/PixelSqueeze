@@ -29,7 +29,14 @@ export const ImageComparison = ({
     <>
       <form>
         <label>
-          Quality: <input type="number" min={1} max={100} step={1} />
+          Quality:{" "}
+          <input
+            type="number"
+            min={1}
+            max={100}
+            step={1}
+            defaultValue={activeFileCompressed.quality}
+          />
         </label>
         <button type="submit">Change</button>
       </form>
