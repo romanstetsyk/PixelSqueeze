@@ -1,5 +1,5 @@
 import { List, ListItem } from "./ImageList.styled";
-import { createFileName } from "utils";
+import { createFileName, formatFileSize, calcSizeChange } from "utils";
 import { BsDownload, BsTrash } from "react-icons/bs";
 
 export const ImageList = ({
@@ -8,16 +8,6 @@ export const ImageList = ({
   removeFile,
   selectFileForComparison,
 }) => {
-  const formatFileSize = numOfBytes => {
-    return `${(numOfBytes / 1000).toFixed(2)}Kb`;
-  };
-
-  const calcSizeChange = (prevSize, newSize) => {
-    const change = Math.abs(newSize / prevSize - 1);
-    const sign = prevSize > newSize ? "-" : "+";
-    return `${sign}${(change * 100).toFixed(1)}%`;
-  };
-
   return (
     <List>
       {originalFiles.map(file => {
