@@ -20,7 +20,9 @@ export const ListItem = styled.li`
   flex-direction: column;
   gap: 0.5rem;
   box-shadow: ${props =>
-    props.active ? "-5px 0px gray" : "rgba(0, 0, 0, 0.1) 0px 4px 12px"};
+    props.active
+      ? "3px 0px gray inset, rgba(0, 0, 0, 0.1) 0px 4px 12px"
+      : "rgba(0, 0, 0, 0.1) 0px 4px 12px"};
   border-width: 1px;
   border-style: solid;
   border-color: ${props => (props.active ? "grey" : "transparent")};

@@ -24,7 +24,10 @@ export const ImageList = ({
               <p>{file.name}</p>
               <button
                 type="button"
-                onClick={() => removeFile(file.id)}
+                onClick={e => {
+                  e.stopPropagation(); // prevent ListItem onClick to fire up
+                  removeFile(file.id);
+                }}
                 title="Remove this image"
               >
                 <BsTrash />
