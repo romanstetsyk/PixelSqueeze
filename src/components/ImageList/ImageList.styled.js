@@ -12,7 +12,6 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   border-radius: 0.75em;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 1em;
   cursor: pointer;
 

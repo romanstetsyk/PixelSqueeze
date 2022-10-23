@@ -1,5 +1,11 @@
 import "img-comparison-slider";
 import { useEffect, useMemo, useState } from "react";
+import {
+  ChangeBtn,
+  ComparisonContainer,
+  Form,
+  Label,
+} from "./ImageComparison.styled";
 
 export const ImageComparison = ({
   activeFileOriginal,
@@ -75,10 +81,10 @@ export const ImageComparison = ({
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <label>
-          Quality:{" "}
+    <ComparisonContainer>
+      <Form onSubmit={onSubmit}>
+        <Label>
+          Quality, %:{" "}
           <input
             onChange={changeInputQuality}
             type="number"
@@ -88,17 +94,17 @@ export const ImageComparison = ({
             step={1}
             value={quality}
           />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Format:{" "}
           <select name="format" onChange={changeInputFormat} value={format}>
             <option value="image/jpeg">JPG</option>
             <option value="image/webp">WebP</option>
             <option value="image/png">PNG</option>
           </select>
-        </label>
-        <button type="submit">Change</button>
-      </form>
+        </Label>
+        <ChangeBtn type="submit">Update</ChangeBtn>
+      </Form>
 
       <div>
         <img-comparison-slider class="coloured-slider">
@@ -112,6 +118,6 @@ export const ImageComparison = ({
           </figure>
         </img-comparison-slider>
       </div>
-    </>
+    </ComparisonContainer>
   );
 };
