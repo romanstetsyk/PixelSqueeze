@@ -5,6 +5,7 @@ import { Browse, StyledDiv, UploadSvg } from "./DragDrop.styled";
 
 export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
   const DEFAULT_QUALITY = 1;
+  const DEFAULT_TYPE = "image/jpeg";
 
   const onDrop = useCallback(
     acceptedFiles => {
@@ -23,13 +24,13 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
           context.drawImage(img, 0, 0, width, height);
           canvas.toBlob(
             blob => {
-              const clone = new File([blob], file.name, { type: file.type });
+              const clone = new File([blob], file.name, { type: DEFAULT_TYPE });
               clone.id = file.id;
               clone.quality = DEFAULT_QUALITY;
               addCompressedFiles(clone); // Changes compressedFiles state
               URL.revokeObjectURL(img.src);
             },
-            "image/jpeg",
+            DEFAULT_TYPE,
             DEFAULT_QUALITY / 100 // Quality as a decimal
           );
         };
