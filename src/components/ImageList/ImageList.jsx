@@ -16,9 +16,15 @@ export const ImageList = ({
 
         return (
           <ListItem
+            tabIndex={0}
             active={file.id === activeFileOriginal?.id}
             key={file.id}
             onClick={() => selectFileForComparison(file.id)}
+            onKeyUp={e => {
+              if (e.key === "Enter") {
+                selectFileForComparison(file.id);
+              }
+            }}
           >
             <div>
               <p>{file.name}</p>
