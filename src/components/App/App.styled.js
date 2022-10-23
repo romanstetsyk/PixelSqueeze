@@ -8,8 +8,8 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
 
-  @media all and (min-width: 1200px) {
-    max-width: 80em;
+  @media all and (min-width: 75em) {
+    max-width: 60em;
   }
 `;
 

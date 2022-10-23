@@ -1,24 +1,44 @@
 import styled from "styled-components";
 
 export const List = styled.ul`
-  /* background-color: red; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15em, 0.5fr));
+  grid-gap: 1rem;
 `;
 
 export const ListItem = styled.li`
-  margin: 1rem 0;
-  max-width: 40em;
-  /* border: 2px solid rgb(234, 216, 211); */
+  /* min-width: 20em; */
   border-radius: 0.75em;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  cursor: pointer;
+
+  :hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
   div {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     gap: 1rem;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+  }
+  div > p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: grey;
   }
 `;

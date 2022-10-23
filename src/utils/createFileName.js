@@ -1,5 +1,4 @@
 export const createFileName = file => {
-  console.log(file);
   const { name, type, quality } = file;
 
   // e.g. filename.ext

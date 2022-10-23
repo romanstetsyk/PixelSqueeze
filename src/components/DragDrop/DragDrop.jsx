@@ -1,7 +1,8 @@
 import { nanoid } from "nanoid";
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { StyledDiv } from "./DragDrop.styled";
+import { BsUpload } from "react-icons/bs";
+import { Browse, StyledDiv } from "./DragDrop.styled";
 
 export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
   const DEFAULT_QUALITY = 1;
@@ -40,12 +41,16 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
     [addOriginalFiles, addCompressedFiles]
   );
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
+    useDropzone({ onDrop, accept: { "image/*": [] } });
 
   return (
-    <StyledDiv {...getRootProps()}>
+    <StyledDiv {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
       <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
+      <BsUpload />
+      <p>
+        Drag&Drop images here <small>or</small> <Browse>Browse files</Browse>
+      </p>
     </StyledDiv>
   );
 };
