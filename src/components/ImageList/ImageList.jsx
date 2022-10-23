@@ -1,6 +1,11 @@
-import { List, ListItem } from "./ImageList.styled";
+import {
+  DownloadSvg,
+  List,
+  ListItem,
+  RemoveSvg,
+  StyledLink,
+} from "./ImageList.styled";
 import { createFileName, formatFileSize, calcSizeChange } from "utils";
-import { BsDownload, BsTrash } from "react-icons/bs";
 
 export const ImageList = ({
   originalFiles,
@@ -36,7 +41,7 @@ export const ImageList = ({
                 }}
                 title="Remove this image"
               >
-                <BsTrash />
+                <RemoveSvg />
               </button>{" "}
             </div>
             <p>
@@ -49,13 +54,14 @@ export const ImageList = ({
               <div>
                 <p>Quality: {cf.quality}% </p>
                 <p>{cf.type}</p>
-                <a
+                <StyledLink
+                  onClick={e => e.stopPropagation()}
                   href={URL.createObjectURL(cf)}
                   download={createFileName(cf)}
                   title="Download compressed file"
                 >
-                  <BsDownload />
-                </a>
+                  <DownloadSvg />
+                </StyledLink>
               </div>
             )}
           </ListItem>

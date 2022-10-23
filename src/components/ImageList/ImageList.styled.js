@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BsDownload, BsTrash } from "react-icons/bs";
 
 export const List = styled.ul`
   display: grid;
@@ -46,11 +47,32 @@ export const ListItem = styled.li`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0;
     border: none;
     background: none;
+    color: inherit;
     cursor: pointer;
   }
-  button:hover {
-    background-color: grey;
+  button:hover svg {
+    fill: red;
+  }
+`;
+
+export const RemoveSvg = styled(BsTrash)`
+  width: 20px;
+  height: 20px;
+`;
+
+export const DownloadSvg = styled(BsDownload)`
+  width: 20px;
+  height: 20px;
+`;
+
+export const StyledLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+
+  :hover svg {
+    fill: blue;
   }
 `;

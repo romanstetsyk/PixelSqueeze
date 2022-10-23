@@ -1,8 +1,7 @@
 import { nanoid } from "nanoid";
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import { BsUpload } from "react-icons/bs";
-import { Browse, StyledDiv } from "./DragDrop.styled";
+import { Browse, StyledDiv, UploadSvg } from "./DragDrop.styled";
 
 export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
   const DEFAULT_QUALITY = 1;
@@ -47,7 +46,7 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
   return (
     <StyledDiv {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
       <input {...getInputProps()} />
-      <BsUpload />
+      <UploadSvg />
       <p>
         Drag&Drop images here <small>or</small> <Browse>Browse files</Browse>
       </p>

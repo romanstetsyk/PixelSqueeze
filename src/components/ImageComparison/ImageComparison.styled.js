@@ -16,6 +16,8 @@ export const ChangeBtn = styled.button`
   padding: 0.75em;
   border: none;
   border-radius: 0.75em;
+  color: inherit;
+  font-weight: 400;
   :hover,
   :focus {
     background-color: rgba(0, 0, 0, 0.1);
@@ -28,7 +30,7 @@ export const Form = styled.form`
   flex-wrap: wrap;
 `;
 export const Label = styled.label`
-  padding: 0.75em;
+  padding: 0.5em 0.75em;
   border: 1px solid rgb(0, 0, 0, 0.1);
   border-radius: 0.75em;
   :hover {

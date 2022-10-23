@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BsUpload } from "react-icons/bs";
 
 const getColor = props => {
   if (props.isDragAccept) {
@@ -35,6 +36,9 @@ export const StyledDiv = styled.div`
   :hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
+  :focus svg {
+    fill: blue;
+  }
 `;
 
 export const Browse = styled.button`
@@ -46,5 +50,14 @@ export const Browse = styled.button`
   :hover,
   :focus {
     background-color: rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const UploadSvg = styled(BsUpload)`
+  width: 20px;
+  height: 20px;
+
+  :focus {
+    fill: blue;
   }
 `;
