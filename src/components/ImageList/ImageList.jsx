@@ -5,6 +5,7 @@ import { BsDownload, BsTrash } from "react-icons/bs";
 export const ImageList = ({
   originalFiles,
   compressedFiles,
+  activeFileOriginal,
   removeFile,
   selectFileForComparison,
 }) => {
@@ -15,6 +16,7 @@ export const ImageList = ({
 
         return (
           <ListItem
+            active={file.id === activeFileOriginal?.id}
             key={file.id}
             onClick={() => selectFileForComparison(file.id)}
           >

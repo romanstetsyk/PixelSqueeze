@@ -53,6 +53,7 @@ export const App = () => {
           <ImageList
             originalFiles={originalFiles}
             compressedFiles={compressedFiles}
+            activeFileOriginal={activeFileOriginal}
             removeFile={removeFile}
             selectFileForComparison={selectFileForComparison}
           />
