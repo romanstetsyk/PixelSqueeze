@@ -1,5 +1,5 @@
 import { DragDrop, ImageList, ImageComparison, DownloadZip } from "components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Section } from "./App.styled";
 
 export const App = () => {
@@ -35,6 +35,11 @@ export const App = () => {
     setCompressedFiles(prev => prev.filter(f => f.id !== id));
   };
 
+  useEffect(() => {
+    const element = document.getElementById("preview");
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+  }, [activeFileOriginal]);
+
   return (
     <>
       <Section>
@@ -64,7 +69,7 @@ export const App = () => {
           </Container>
         )}
       </Section>
-      <Section>
+      <Section id={"preview"}>
         <Container>
           {activeFileCompressed && (
             <ImageComparison
