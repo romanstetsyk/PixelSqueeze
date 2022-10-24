@@ -47,10 +47,14 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
   return (
     <StyledDiv {...getRootProps({ isFocused, isDragAccept, isDragReject })}>
       <input {...getInputProps()} />
-      <UploadSvg />
-      <p>
-        Drag&Drop images here <small>or</small> <Browse>Browse files</Browse>
-      </p>
+
+      <div>
+        <UploadSvg />
+        <p>Drag&Drop images here</p>
+        <div>
+          <small>or</small> <Browse>Browse files</Browse>
+        </div>
+      </div>
     </StyledDiv>
   );
 };

@@ -39,6 +39,14 @@ export const StyledDiv = styled.div`
   :focus svg {
     fill: blue;
   }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 export const Browse = styled.button`

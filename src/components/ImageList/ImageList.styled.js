@@ -34,7 +34,6 @@ export const ListItem = styled.li`
   div {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
     gap: 1rem;
   }
   div > p {
@@ -69,6 +68,8 @@ export const DownloadSvg = styled(BsDownload)`
 `;
 
 export const StyledLink = styled.a`
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: inherit;
 
