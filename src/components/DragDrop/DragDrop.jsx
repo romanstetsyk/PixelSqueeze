@@ -1,10 +1,11 @@
 import { nanoid } from "nanoid";
 import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import { compress } from "utils";
 import { Browse, StyledDiv, UploadSvg } from "./DragDrop.styled";
 
 export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
-  const DEFAULT_QUALITY = 1;
+  const DEFAULT_QUALITY = 70;
   const DEFAULT_TYPE = "image/jpeg";
 
   const onDrop = useCallback(
@@ -13,36 +14,27 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
       addOriginalFiles(acceptedFiles); // Changes originalFiles state
 
       acceptedFiles.forEach(file => {
-        let img = new Image();
-        // img event handler
-        img.onload = () => {
-          const [width, height] = [img.width, img.height];
-          const canvas = document.createElement("canvas");
-          const context = canvas.getContext("2d");
-          canvas.width = width;
-          canvas.height = height;
-          context.drawImage(img, 0, 0, width, height);
-          canvas.toBlob(
-            blob => {
-              const clone = new File([blob], file.name, { type: DEFAULT_TYPE });
-              clone.id = file.id;
-              clone.quality = DEFAULT_QUALITY;
-              addCompressedFiles(clone); // Changes compressedFiles state
-              URL.revokeObjectURL(img.src);
-            },
-            DEFAULT_TYPE,
-            DEFAULT_QUALITY / 100 // Quality as a decimal
-          );
-        };
-        // fire the img event handler
-        img.src = URL.createObjectURL(file);
+        compress(file, DEFAULT_QUALITY, DEFAULT_TYPE).then(clone =>
+          addCompressedFiles(clone)
+        );
       });
     },
     [addOriginalFiles, addCompressedFiles]
   );
 
+  const onDropRejected = e => console.log(e);
+
   const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
-    useDropzone({ onDrop, accept: { "image/*": [] } });
+    useDropzone({
+      onDrop,
+      onDropRejected,
+      accept: {
+        "image/jpeg": [".jpg", ".jpeg", ".jpe", ".jif", ".jfif"],
+        "image/png": [".png"],
+        "image/webp": [".webp"],
+      },
+      autoFocus: true,
+    });
 
   return (
     <StyledDiv {...getRootProps({ isFocused, isDragAccept, isDragReject })}>

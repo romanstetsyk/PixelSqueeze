@@ -1,5 +1,6 @@
 import "img-comparison-slider";
 import { useEffect, useMemo, useState } from "react";
+import { compress } from "utils";
 import {
   ChangeBtn,
   ComparisonContainer,
@@ -53,31 +54,10 @@ export const ImageComparison = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    let img = new Image();
-    // img event handler
-    img.onload = () => {
-      const [width, height] = [img.width, img.height];
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d");
-      canvas.width = width;
-      canvas.height = height;
-      context.drawImage(img, 0, 0, width, height);
-      canvas.toBlob(
-        blob => {
-          const clone = new File([blob], activeFileOriginal.name, {
-            type: format,
-          });
-          clone.id = activeFileCompressed.id;
-          clone.quality = quality;
-          changeCompressedFile(activeFileCompressed.id, clone); // Changes compressedFiles state
-          URL.revokeObjectURL(img.src);
-        },
-        format,
-        quality / 100 // Quality as a decimal
-      );
-    };
-    // fire the img event handler
-    img.src = URL.createObjectURL(activeFileOriginal);
+
+    compress(activeFileOriginal, quality, format).then(clone =>
+      changeCompressedFile(activeFileCompressed.id, clone)
+    );
   };
 
   return (
