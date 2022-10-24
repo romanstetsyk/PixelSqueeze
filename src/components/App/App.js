@@ -4,9 +4,12 @@ import {
   ImageComparison,
   DownloadZip,
   Logo,
+  Card,
+  Note,
+  FooterContent,
 } from "components";
 import { useEffect, useState } from "react";
-import { Container, Section } from "./App.styled";
+import { CardWrapper, Container, Footer, Header, Section } from "./App.styled";
 
 export const App = () => {
   const [originalFiles, setOriginalFiles] = useState([]);
@@ -48,11 +51,11 @@ export const App = () => {
 
   return (
     <>
-      <Section>
+      <Header>
         <Container>
           <Logo />
         </Container>
-      </Section>
+      </Header>
       <Section>
         <Container>
           <DragDrop
@@ -86,6 +89,34 @@ export const App = () => {
           )}
         </Container>
       </Section>
+      <Section>
+        <Container>
+          <CardWrapper>
+            <Card
+              title={"Upload"}
+              text={
+                "Select up to 20 images. Files are processed directly in browser"
+              }
+            />
+            <Card
+              title={"Customize"}
+              text={
+                "Customize the quality and type of each image. Compare the original and compressed images side-by-side"
+              }
+            />
+            <Card
+              title={"Download"}
+              text={"Download a .zip archive with all compressed images"}
+            />
+          </CardWrapper>
+          <Note />
+        </Container>
+      </Section>
+      <Footer>
+        <Container>
+          <FooterContent></FooterContent>
+        </Container>
+      </Footer>
     </>
   );
 };

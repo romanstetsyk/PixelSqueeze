@@ -6,6 +6,7 @@ export const ComparisonContainer = styled.div`
   flex-direction: column;
   gap: 1em;
   padding: 2em 1em;
+  margin-bottom: 5em;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   border-radius: 0.75em;
 `;

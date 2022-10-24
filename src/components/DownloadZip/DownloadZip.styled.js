@@ -9,8 +9,8 @@ export const DownloadDiv = styled.div`
   padding-top: 2rem;
   padding-bottom: 2rem;
   margin-top: 2rem;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
+  /* border-top: 1px solid grey; */
+  /* border-bottom: 1px solid grey; */
 `;
 
 export const DownloadBtn = styled.button`
