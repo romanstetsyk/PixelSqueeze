@@ -1,4 +1,10 @@
-import { DragDrop, ImageList, ImageComparison, DownloadZip } from "components";
+import {
+  DragDrop,
+  ImageList,
+  ImageComparison,
+  DownloadZip,
+  Logo,
+} from "components";
 import { useEffect, useState } from "react";
 import { Container, Section } from "./App.styled";
 
@@ -44,7 +50,7 @@ export const App = () => {
     <>
       <Section>
         <Container>
-          <h1>PixelSqueeze</h1>
+          <Logo />
         </Container>
       </Section>
       <Section>
