@@ -78,7 +78,7 @@ export const App = () => {
           </Container>
         )}
       </Section>
-      <Section id={"preview"}>
+      <Section id="preview">
         <Container>
           {activeFileCompressed && (
             <ImageComparison
@@ -93,20 +93,16 @@ export const App = () => {
         <Container>
           <CardWrapper>
             <Card
-              title={"Upload"}
-              text={
-                "Select up to 20 images. Files are processed directly in browser"
-              }
+              title="Upload"
+              text="Select up to 20 images. Files are processed directly in browser"
             />
             <Card
-              title={"Customize"}
-              text={
-                "Customize the quality and type of each image. Compare the original and compressed images side-by-side"
-              }
+              title="Customize"
+              text="Customize the quality and type of each image. Compare the original and compressed images side-by-side"
             />
             <Card
-              title={"Download"}
-              text={"Download a .zip archive with all compressed images"}
+              title="Download"
+              text="Download a .zip archive with all compressed images"
             />
           </CardWrapper>
           <Note />
