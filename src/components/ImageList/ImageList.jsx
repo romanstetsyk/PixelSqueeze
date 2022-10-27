@@ -1,5 +1,5 @@
 import { List } from "./ImageList.styled";
-import { ImageListItem } from "components/ImageListItem";
+import { ImageListItem } from "./ImageListItem";
 
 export const ImageList = ({
   originalFiles,
