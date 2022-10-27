@@ -13,6 +13,7 @@ export const theme = {
   },
   sizes: {
     icon: "1.25rem",
+    6: "1.5rem",
     240: "60rem",
   },
   radii: {

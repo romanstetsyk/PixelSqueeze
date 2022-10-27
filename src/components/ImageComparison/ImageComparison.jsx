@@ -1,9 +1,7 @@
 import { Box } from "components/App/App.styled";
-import { Button } from "components/Button";
 import "img-comparison-slider";
 import { useEffect, useMemo, useState } from "react";
-import { compress } from "utils";
-import { Form, Label } from "./ImageComparison.styled";
+import { ImageForm } from "./ImageForm";
 
 export const ImageComparison = ({
   activeFileOriginal,
@@ -12,8 +10,6 @@ export const ImageComparison = ({
 }) => {
   const [urlOriginal, setUrlOriginal] = useState(null);
   const [urlCompressed, setUrlCompressed] = useState(null);
-  const [quality, setQuality] = useState(activeFileCompressed.quality);
-  const [format, setFormat] = useState(activeFileCompressed.type);
 
   // prevent recreating urls in infinite loop
   const urlOriginalMemo = useMemo(() => {
@@ -33,30 +29,6 @@ export const ImageComparison = ({
     };
   }, [urlOriginalMemo, urlCompressedMemo, urlOriginal, urlCompressed]);
 
-  const changeInputQuality = e => {
-    const val = e.currentTarget.value;
-    setQuality(val);
-  };
-
-  const changeInputFormat = e => {
-    const val = e.currentTarget.value;
-    setFormat(val);
-  };
-
-  // Make quality change when props change
-  useEffect(() => {
-    setQuality(activeFileCompressed.quality);
-    setFormat(activeFileCompressed.type);
-  }, [activeFileCompressed.quality, activeFileCompressed.type]);
-
-  const onSubmit = e => {
-    e.preventDefault();
-
-    compress(activeFileOriginal, quality, format).then(clone =>
-      changeCompressedFile(activeFileCompressed.id, clone)
-    );
-  };
-
   return (
     <Box
       display="flex"
@@ -67,42 +39,22 @@ export const ImageComparison = ({
       boxShadow="boxNormal"
       borderRadius="sm"
     >
-      <Form onSubmit={onSubmit}>
-        <Label>
-          Quality, %:{" "}
-          <input
-            onChange={changeInputQuality}
-            type="number"
-            name="quality"
-            min={1}
-            max={100}
-            step={1}
-            value={quality}
-          />
-        </Label>
-        <Label>
-          Format:{" "}
-          <select name="format" onChange={changeInputFormat} value={format}>
-            <option value="image/jpeg">JPG</option>
-            <option value="image/webp">WebP</option>
-            <option value="image/png">PNG</option>
-          </select>
-        </Label>
-        <Button type="submit">Update</Button>
-      </Form>
+      <ImageForm
+        activeFileOriginal={activeFileOriginal}
+        activeFileCompressed={activeFileCompressed}
+        changeCompressedFile={changeCompressedFile}
+      />
 
-      <div>
-        <img-comparison-slider class="coloured-slider">
-          <figure slot="first" className="before">
-            <img width="100%" src={urlOriginal} alt="" />
-            <figcaption>Before</figcaption>
-          </figure>
-          <figure slot="second" className="after">
-            <img width="100%" src={urlCompressed} alt="" />
-            <figcaption>After</figcaption>
-          </figure>
-        </img-comparison-slider>
-      </div>
+      <img-comparison-slider class="coloured-slider">
+        <figure slot="first" className="before">
+          <img width="100%" src={urlOriginal} alt="" />
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure slot="second" className="after">
+          <img width="100%" src={urlCompressed} alt="" />
+          <figcaption>After</figcaption>
+        </figure>
+      </img-comparison-slider>
     </Box>
   );
 };
