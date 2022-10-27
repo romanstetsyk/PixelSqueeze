@@ -11,20 +11,6 @@ export const ComparisonContainer = styled.div`
   border-radius: 0.75em;
 `;
 
-export const ChangeBtn = styled.button`
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.05);
-  padding: 0.75em;
-  border: none;
-  border-radius: 0.75em;
-  color: inherit;
-  font-weight: 400;
-  :hover,
-  :focus {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-`;
-
 export const Form = styled.form`
   display: flex;
   gap: 0.5rem;

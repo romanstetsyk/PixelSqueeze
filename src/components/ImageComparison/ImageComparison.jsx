@@ -1,12 +1,9 @@
+import { Box } from "components/App/App.styled";
+import { Button } from "components/Button";
 import "img-comparison-slider";
 import { useEffect, useMemo, useState } from "react";
 import { compress } from "utils";
-import {
-  ChangeBtn,
-  ComparisonContainer,
-  Form,
-  Label,
-} from "./ImageComparison.styled";
+import { Form, Label } from "./ImageComparison.styled";
 
 export const ImageComparison = ({
   activeFileOriginal,
@@ -61,7 +58,15 @@ export const ImageComparison = ({
   };
 
   return (
-    <ComparisonContainer>
+    <Box
+      display="flex"
+      flexDirection="column"
+      gap={4}
+      px={4}
+      py={8}
+      boxShadow="boxNormal"
+      borderRadius="sm"
+    >
       <Form onSubmit={onSubmit}>
         <Label>
           Quality, %:{" "}
@@ -83,7 +88,7 @@ export const ImageComparison = ({
             <option value="image/png">PNG</option>
           </select>
         </Label>
-        <ChangeBtn type="submit">Update</ChangeBtn>
+        <Button type="submit">Update</Button>
       </Form>
 
       <div>
@@ -98,6 +103,6 @@ export const ImageComparison = ({
           </figure>
         </img-comparison-slider>
       </div>
-    </ComparisonContainer>
+    </Box>
   );
 };

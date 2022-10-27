@@ -78,7 +78,7 @@ export const App = () => {
         )}
 
         {activeFileCompressed && (
-          <Container id="preview">
+          <Container id="preview" mb={20}>
             <ImageComparison
               activeFileOriginal={activeFileOriginal}
               activeFileCompressed={activeFileCompressed}

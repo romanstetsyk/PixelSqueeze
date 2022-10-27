@@ -9,6 +9,7 @@ export const theme = {
     5: "1.25rem",
     6: "1.5rem",
     8: "2rem",
+    20: "5rem",
   },
   sizes: {
     icon: "1.25rem",

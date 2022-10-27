@@ -13,23 +13,9 @@ import {
   system,
 } from "styled-system";
 
-// export const Section = styled.section`
-//   padding: 1rem 0;
-// `;
-
-// export const Header = styled.header`
-//   padding: 1rem 0;
-// `;
-
 export const Footer = styled.footer`
   padding: 1rem 0;
 `;
-
-// export const Container = styled.div`
-//   margin: 0 auto;
-//   padding: 0 1rem;
-//   max-width: 60em;
-// `;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -43,18 +29,6 @@ export const CardWrapper = styled.div`
   padding: 5rem 0;
   border-top: 1px solid grey;
 `;
-
-export const Container = styled("div")(
-  {
-    maxWidth: p => p.theme.sizes[240],
-    paddingLeft: p => p.theme.space[4],
-    paddingRight: p => p.theme.space[4],
-    marginLeft: p => p.theme.space["auto"],
-    marginRight: p => p.theme.space["auto"],
-  },
-  layout,
-  flexbox
-);
 
 export const Section = styled("div")({
   paddingTop: p => p.theme.space[4],
@@ -91,6 +65,14 @@ export const Box = styled("div")(
     },
   })
 );
+
+export const Container = styled(Box)({
+  maxWidth: p => p.theme.sizes[240],
+  paddingLeft: p => p.theme.space[4],
+  paddingRight: p => p.theme.space[4],
+  marginLeft: p => p.theme.space["auto"],
+  marginRight: p => p.theme.space["auto"],
+});
 
 export const Icon = styled.div`
   width: 1.25rem;
