@@ -1,7 +1,8 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { createFileName } from "utils";
-import { DownloadBtn, DownloadDiv } from "./DownloadZip.styled";
+import { Button } from "components/Button";
+import { Box } from "components/App/App.styled";
 
 export const DownloadZip = ({ compressedFiles }) => {
   const generateZip = () => {
@@ -13,9 +14,17 @@ export const DownloadZip = ({ compressedFiles }) => {
   };
 
   return (
-    <DownloadDiv>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      gap={4}
+      py={8}
+      mt={8}
+    >
       <p>Download Zip Archive with compressed images:</p>
-      <DownloadBtn onClick={generateZip}>Download .zip</DownloadBtn>
-    </DownloadDiv>
+      <Button onClick={generateZip}>Download .zip</Button>
+    </Box>
   );
 };
