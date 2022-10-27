@@ -1,12 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 body {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   color: rgb(40, 40, 40);
-}
+} */
 
-h1,
+/* h1,
 h2,
 h3,
 h4,
@@ -14,9 +14,9 @@ h5,
 h6,
 p {
   margin: 0;
-}
+} */
 
-ul,
+/* ul,
 ol {
   margin: 0;
   padding: 0;
@@ -28,7 +28,7 @@ ul {
 
 img {
   display: block;
-}
+} */
 
 .coloured-slider {
   --divider-width: 1px;
@@ -73,8 +73,8 @@ img {
   right: 0.75em;
 }
 
-a {
+/* a {
   display: inline-block;
   text-decoration: none;
   color: inherit;
-}
+} */

@@ -7,6 +7,8 @@ import { Logo } from "./Logo";
 import { Card } from "./Card";
 import { Note } from "./Note";
 import { FooterContent } from "./Footer";
+import { Header } from "./Header";
+import { Button } from "./Button";
 
 export {
   DragDrop,
@@ -18,4 +20,6 @@ export {
   Card,
   Note,
   FooterContent,
+  Header,
+  Button,
 };

@@ -1,11 +1,11 @@
-import { StyledLogo } from "./Logo.styled";
+import { LogoLink } from "./Logo.styled";
 
 export const Logo = () => {
   return (
     <nav>
-      <StyledLogo href="/">
+      <LogoLink href="/">
         <h1>PixelSqueeze</h1>
-      </StyledLogo>
+      </LogoLink>
     </nav>
   );
 };

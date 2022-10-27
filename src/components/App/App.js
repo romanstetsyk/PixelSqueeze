@@ -3,13 +3,13 @@ import {
   ImageList,
   ImageComparison,
   DownloadZip,
-  Logo,
   Card,
   Note,
   FooterContent,
+  Header,
 } from "components";
 import { useEffect, useState } from "react";
-import { CardWrapper, Container, Footer, Header, Section } from "./App.styled";
+import { CardWrapper, Container, Footer, Section } from "./App.styled";
 
 export const App = () => {
   const [originalFiles, setOriginalFiles] = useState([]);
@@ -51,18 +51,16 @@ export const App = () => {
 
   return (
     <>
-      <Header>
-        <Container>
-          <Logo />
-        </Container>
-      </Header>
-      <Section>
+      <Header />
+
+      <Section as="main">
         <Container>
           <DragDrop
             addOriginalFiles={addOriginalFiles}
             addCompressedFiles={addCompressedFiles}
           />
         </Container>
+
         <Container>
           <ImageList
             originalFiles={originalFiles}
@@ -72,24 +70,25 @@ export const App = () => {
             selectFileForComparison={selectFileForComparison}
           />
         </Container>
+
         {compressedFiles.length > 0 && (
           <Container>
             <DownloadZip compressedFiles={compressedFiles} />
           </Container>
         )}
-      </Section>
-      <Section id="preview">
-        <Container>
-          {activeFileCompressed && (
+
+        {activeFileCompressed && (
+          <Container id="preview">
             <ImageComparison
               activeFileOriginal={activeFileOriginal}
               activeFileCompressed={activeFileCompressed}
               changeCompressedFile={changeCompressedFile}
             />
-          )}
-        </Container>
+          </Container>
+        )}
       </Section>
-      <Section>
+
+      <Section as="section">
         <Container>
           <CardWrapper>
             <Card

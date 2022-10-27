@@ -1,11 +1,5 @@
-import {
-  DownloadSvg,
-  List,
-  ListItem,
-  RemoveSvg,
-  StyledLink,
-} from "./ImageList.styled";
-import { createFileName, formatFileSize, calcSizeChange } from "utils";
+import { List } from "./ImageList.styled";
+import { ImageListItem } from "components/ImageListItem";
 
 export const ImageList = ({
   originalFiles,
@@ -20,51 +14,14 @@ export const ImageList = ({
         const cf = compressedFiles.find(e => e.id === file.id);
 
         return (
-          <ListItem
-            tabIndex={0}
-            active={file.id === activeFileOriginal?.id}
+          <ImageListItem
             key={file.id}
-            onClick={() => selectFileForComparison(file.id)}
-            onKeyUp={e => {
-              if (e.key === "Enter") {
-                selectFileForComparison(file.id);
-              }
-            }}
-          >
-            <div>
-              <p>{file.name}</p>
-              <button
-                type="button"
-                onClick={e => {
-                  e.stopPropagation(); // prevent ListItem onClick to fire up
-                  removeFile(file.id);
-                }}
-                title="Remove this image"
-              >
-                <RemoveSvg />
-              </button>{" "}
-            </div>
-            <p>
-              {formatFileSize(file.size)} &rarr;{" "}
-              {!cf ? "loading" : formatFileSize(cf.size)} (
-              {cf && calcSizeChange(file.size, cf.size)})
-            </p>
-
-            {cf && (
-              <div>
-                <p>Quality: {cf.quality}% </p>
-                <p>{cf.type}</p>
-                <StyledLink
-                  onClick={e => e.stopPropagation()}
-                  href={URL.createObjectURL(cf)}
-                  download={createFileName(cf)}
-                  title="Download compressed file"
-                >
-                  <DownloadSvg />
-                </StyledLink>
-              </div>
-            )}
-          </ListItem>
+            activeFileOriginal={activeFileOriginal}
+            removeFile={removeFile}
+            selectFileForComparison={selectFileForComparison}
+            file={file}
+            cf={cf}
+          />
         );
       })}
     </List>
