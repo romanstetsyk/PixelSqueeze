@@ -32,6 +32,7 @@ export const theme = {
     success: "rgb(209, 226, 205)",
     pinkPale: "rgb(249, 241, 243)",
     red: "rgb(245, 50, 35)",
+    white: "rgb(255, 255, 255)",
     grayLightest: "rgb(245, 245, 245)",
     grayLight: "rgb(230, 230, 230)",
     grayDarker: "rgb(215, 215, 215)",
@@ -46,9 +47,13 @@ export const theme = {
   lineHeights: {
     body: 1.5,
     heading: 2,
+    p100: "100%",
   },
   shadows: {
     boxNormal: "rgb(0 0 0 / 10%) 0px 1px 8px",
     active: "3px 0px gray inset, rgba(0, 0, 0, 0.1) 0px 4px 12px",
+  },
+  transitions: {
+    ease200: "1000ms ease-in-out;",
   },
 };

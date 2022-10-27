@@ -2,6 +2,7 @@ import { Box } from "components/App/App.styled";
 import "img-comparison-slider";
 import { useEffect, useMemo, useState } from "react";
 import { ImageForm } from "./ImageForm";
+import { ImageSlider } from "./ImageSlider";
 
 export const ImageComparison = ({
   activeFileOriginal,
@@ -45,16 +46,7 @@ export const ImageComparison = ({
         changeCompressedFile={changeCompressedFile}
       />
 
-      <img-comparison-slider class="coloured-slider">
-        <figure slot="first" className="before">
-          <img width="100%" src={urlOriginal} alt="" />
-          <figcaption>Before</figcaption>
-        </figure>
-        <figure slot="second" className="after">
-          <img width="100%" src={urlCompressed} alt="" />
-          <figcaption>After</figcaption>
-        </figure>
-      </img-comparison-slider>
+      <ImageSlider urlOriginal={urlOriginal} urlCompressed={urlCompressed} />
     </Box>
   );
 };

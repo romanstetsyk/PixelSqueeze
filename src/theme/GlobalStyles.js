@@ -16,7 +16,8 @@ export const GlobalStyles = createGlobalStyle`
   h4,
   h5,
   h6,
-  p {
+  p,
+  figure {
     margin: ${p => p.theme.space[0]};
   }
 
