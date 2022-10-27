@@ -11,6 +11,7 @@ import {
   shadow,
   compose,
   system,
+  typography,
 } from "styled-system";
 
 export const Footer = styled.footer`
@@ -21,21 +22,15 @@ export const Wrapper = styled.div`
   display: flex;
 `;
 
-export const CardWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16em, 1fr));
-  grid-gap: 1rem;
-  text-align: center;
-  padding: 5rem 0;
-  border-top: 1px solid grey;
-`;
-
-export const Section = styled("div")({
-  paddingTop: p => p.theme.space[4],
-  paddingBottom: p => p.theme.space[4],
+export const Section = styled("div")(
+  {
+    paddingTop: p => p.theme.space[4],
+    paddingBottom: p => p.theme.space[4],
+  },
   layout,
   flexbox,
-});
+  space
+);
 
 const defaults = { space: [0, 4, 8, 16, 32, 64, 128, 256, 512] };
 
@@ -49,7 +44,8 @@ export const Box = styled("div")(
     border,
     color,
     background,
-    shadow
+    shadow,
+    typography
   ),
   system({
     gap: { property: "gap", scale: "space", defaultScale: defaults.space },

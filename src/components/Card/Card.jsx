@@ -1,10 +1,10 @@
-import { StyledCard } from "./Card.styled";
+import { Box } from "components/App/App.styled";
 
 export const Card = ({ title, text }) => {
   return (
-    <StyledCard>
+    <Box display="flex" flexDirection="column" gap={4}>
       <h2>{title}</h2>
       <p>{text}</p>
-    </StyledCard>
+    </Box>
   );
 };

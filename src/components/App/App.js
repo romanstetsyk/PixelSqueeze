@@ -9,7 +9,7 @@ import {
   Header,
 } from "components";
 import { useEffect, useState } from "react";
-import { CardWrapper, Container, Footer, Section } from "./App.styled";
+import { Container, Footer, Section } from "./App.styled";
 
 export const App = () => {
   const [originalFiles, setOriginalFiles] = useState([]);
@@ -78,7 +78,7 @@ export const App = () => {
         )}
 
         {activeFileCompressed && (
-          <Container id="preview" mb={20}>
+          <Container id="preview">
             <ImageComparison
               activeFileOriginal={activeFileOriginal}
               activeFileCompressed={activeFileCompressed}
@@ -88,27 +88,30 @@ export const App = () => {
         )}
       </Section>
 
-      <Section as="section">
-        <Container>
-          <CardWrapper>
-            <Card
-              title="Upload"
-              text="Select up to 20 images. Files are processed directly in browser"
-            />
-            <Card
-              title="Customize"
-              text="Customize the quality and type of each image. Compare the original and compressed images side-by-side"
-            />
-            <Card
-              title="Download"
-              text="Download a .zip archive with all compressed images"
-            />
-          </CardWrapper>
-          <Note />
+      <Section as="section" py={20}>
+        <Container
+          display="grid"
+          gridTemplateColumns="repeat(auto-fit, minmax(16em, 1fr))"
+          gridGap={4}
+          textAlign="center"
+        >
+          <Card
+            title="Upload"
+            text="Select up to 20 images. Files are processed directly in browser"
+          />
+          <Card
+            title="Customize"
+            text="Customize the quality and type of each image. Compare the original and compressed images side-by-side"
+          />
+          <Card
+            title="Download"
+            text="Download a .zip archive with all compressed images"
+          />
         </Container>
       </Section>
       <Footer>
         <Container>
+          <Note />
           <FooterContent></FooterContent>
         </Container>
       </Footer>
