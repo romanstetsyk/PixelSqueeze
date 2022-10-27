@@ -36,7 +36,7 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
         "image/png": [".png"],
         "image/webp": [".webp"],
       },
-      autoFocus: true,
+      autoFocus: false,
     });
 
   return (
