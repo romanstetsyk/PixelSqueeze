@@ -99,7 +99,7 @@ export const App = () => {
         >
           <Card
             title="Upload"
-            text="Select up to 20 images. Files are processed directly in browser"
+            text="Upload .jpeg, .png, or .webp images. Files are processed directly in the browser"
           />
           <Card
             title="Customize"
