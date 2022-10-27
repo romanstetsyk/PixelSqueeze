@@ -14,10 +14,6 @@ import {
   typography,
 } from "styled-system";
 
-export const Wrapper = styled.div`
-  display: flex;
-`;
-
 export const Section = styled("div")(
   {
     paddingTop: p => p.theme.space[4],
