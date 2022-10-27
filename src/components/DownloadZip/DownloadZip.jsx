@@ -6,6 +6,7 @@ import { Box } from "components/App/App.styled";
 
 export const DownloadZip = ({ compressedFiles }) => {
   const generateZip = () => {
+    console.log("asdf");
     const zip = new JSZip();
     compressedFiles.forEach(f => zip.file(createFileName(f), f));
     zip.generateAsync({ type: "blob" }).then(function (content) {
@@ -24,7 +25,9 @@ export const DownloadZip = ({ compressedFiles }) => {
       mt={8}
     >
       <p>Download Zip Archive with compressed images:</p>
-      <Button onClick={generateZip}>Download .zip</Button>
+      <Button type="button" onClick={generateZip}>
+        Download .zip
+      </Button>
     </Box>
   );
 };
