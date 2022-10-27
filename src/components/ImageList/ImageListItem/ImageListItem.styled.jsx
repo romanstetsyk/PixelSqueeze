@@ -12,6 +12,8 @@ export const ListItem = styled.li`
   border: ${p => p.theme.borders.thinSolid};
   border-color: ${p =>
     p.active ? p.theme.colors.gray3 : p.theme.colors.transparent};
+  transition: ${p => p.theme.transitions.ease200};
+  transition-property: background-color;
 
   :hover {
     background-color: ${p => p.theme.colors.grayLightest};
@@ -22,15 +24,4 @@ export const FileName = styled.p`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-`;
-
-export const ButtonIcon = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: ${p => p.theme.space[0]};
-  border: ${p => p.theme.borders.none};
-  background: none;
-  color: inherit;
-  cursor: pointer;
 `;

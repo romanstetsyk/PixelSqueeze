@@ -12,6 +12,8 @@ export const ButtonStyled = styled.button`
   background-color: ${p => p.theme.colors.grayLight};
   font-weight: ${p => p.theme.fontWeights.normal};
   line-height: inherit;
+  transition: ${p => p.theme.transitions.ease200};
+  transition-property: background-color;
 
   :hover,
   :focus {

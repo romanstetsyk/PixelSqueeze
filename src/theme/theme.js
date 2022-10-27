@@ -61,6 +61,6 @@ export const theme = {
     active: "3px 0px gray inset, rgba(0, 0, 0, 0.1) 0px 4px 12px",
   },
   transitions: {
-    ease200: "1000ms ease-in-out;",
+    ease200: "150ms ease-in-out;",
   },
 };

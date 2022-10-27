@@ -1,7 +1,7 @@
 import { BsDownload, BsTrash } from "react-icons/bs";
-import { Box, Icon } from "components/App/App.styled";
+import { Box, Icon, IconContainer } from "components/App/App.styled";
 import { calcSizeChange, createFileName, formatFileSize } from "utils";
-import { ButtonIcon, FileName, ListItem } from "./ImageListItem.styled";
+import { FileName, ListItem } from "./ImageListItem.styled";
 
 export const ImageListItem = ({
   activeFileOriginal,
@@ -24,7 +24,9 @@ export const ImageListItem = ({
     >
       <Box display="flex" justifyContent="space-between" gap={4}>
         <FileName>{file.name}</FileName>
-        <ButtonIcon
+        <IconContainer
+          effect="remove"
+          as="button"
           type="button"
           onClick={e => {
             e.stopPropagation(); // prevent ListItem onClick to fire up
@@ -32,8 +34,8 @@ export const ImageListItem = ({
           }}
           title="Remove this image"
         >
-          <Icon as={BsTrash} effect="remove" />
-        </ButtonIcon>{" "}
+          <Icon as={BsTrash} />
+        </IconContainer>{" "}
       </Box>
       <p>
         {formatFileSize(file.size)} &rarr;{" "}
@@ -55,17 +57,15 @@ export const ImageListItem = ({
         >
           <span>Quality: {cf.quality}% </span>
           <span>{cf.type}</span>
-          <Box
-            title="Download compressed file"
+          <IconContainer
             as="a"
-            display="flex"
-            alignItems="center"
+            title="Download compressed file"
             onClick={e => e.stopPropagation()}
             href={URL.createObjectURL(cf)}
             download={createFileName(cf)}
           >
             <Icon as={BsDownload} />
-          </Box>
+          </IconContainer>
         </Box>
       )}
     </ListItem>

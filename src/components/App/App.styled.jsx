@@ -66,9 +66,27 @@ export const Icon = styled.div`
   width: 1.25rem;
   height: 1.25rem;
   fill: ${p => p.theme.colors.primary};
+  transition: ${p => p.theme.transitions.ease200};
+  transition-property: fill;
 
   :hover,
   :focus {
+    fill: ${p => p.theme.colors.blue};
+  }
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: ${p => p.theme.space[0]};
+  border: ${p => p.theme.borders.none};
+  background: none;
+  color: inherit;
+  cursor: pointer;
+
+  :hover svg,
+  :focus svg {
     fill: ${p => {
       switch (p.effect) {
         case "remove":

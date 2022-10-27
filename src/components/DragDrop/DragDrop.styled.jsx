@@ -35,6 +35,8 @@ export const StyledDiv = styled.div`
   background-color: ${p => getColor(p).bgColor};
   box-shadow: ${p => p.theme.shadows.boxNormal};
   cursor: pointer;
+  transition: ${p => p.theme.transitions.ease200};
+  transition-property: background-color;
 
   :hover {
     background-color: ${p => p.theme.colors.grayLightest};
