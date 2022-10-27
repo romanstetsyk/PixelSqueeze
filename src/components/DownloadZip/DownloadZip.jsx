@@ -6,7 +6,6 @@ import { Box } from "components/App/App.styled";
 
 export const DownloadZip = ({ compressedFiles }) => {
   const generateZip = () => {
-    console.log("asdf");
     const zip = new JSZip();
     compressedFiles.forEach(f => zip.file(createFileName(f), f));
     zip.generateAsync({ type: "blob" }).then(function (content) {
