@@ -27,16 +27,11 @@ export const GlobalStyles = createGlobalStyle`
     padding: ${p => p.theme.space[0]};
   }
 
-  ul {
-    list-style: none;
-  }
-
   img {
     display: block;
   }
 
   a {
-    display: inline-block;
     text-decoration: none;
     color: inherit;
   }

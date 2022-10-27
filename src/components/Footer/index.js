@@ -1,3 +1,3 @@
-import { FooterContent } from "./FooterContent";
+import { Footer } from "./Footer";
 
-export { FooterContent };
+export { Footer };

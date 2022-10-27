@@ -9,12 +9,19 @@ export const theme = {
     5: "1.25rem",
     6: "1.5rem",
     8: "2rem",
+    12: "3rem",
+    16: "4rem",
     20: "5rem",
   },
   sizes: {
     icon: "1.25rem",
+    maxContent: "max-content",
     6: "1.5rem",
     240: "60rem",
+  },
+  fontSizes: {
+    small: "0.8em",
+    logo: "1.5em",
   },
   radii: {
     none: 0,

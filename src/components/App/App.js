@@ -4,12 +4,11 @@ import {
   ImageComparison,
   DownloadZip,
   Card,
-  Note,
-  FooterContent,
+  Footer,
   Header,
 } from "components";
 import { useEffect, useState } from "react";
-import { Container, Footer, Section } from "./App.styled";
+import { Container, Section } from "./App.styled";
 
 export const App = () => {
   const [originalFiles, setOriginalFiles] = useState([]);
@@ -88,8 +87,11 @@ export const App = () => {
         )}
       </Section>
 
-      <Section as="section" py={20}>
+      <Section as="section" pt={20}>
         <Container
+          pt={12}
+          borderTop="thinSolid"
+          borderColor="gray3"
           display="grid"
           gridTemplateColumns="repeat(auto-fit, minmax(16em, 1fr))"
           gridGap={4}
@@ -109,12 +111,8 @@ export const App = () => {
           />
         </Container>
       </Section>
-      <Footer>
-        <Container>
-          <Note />
-          <FooterContent></FooterContent>
-        </Container>
-      </Footer>
+
+      <Footer />
     </>
   );
 };

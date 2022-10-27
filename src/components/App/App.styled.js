@@ -14,10 +14,6 @@ import {
   typography,
 } from "styled-system";
 
-export const Footer = styled.footer`
-  padding: 1rem 0;
-`;
-
 export const Wrapper = styled.div`
   display: flex;
 `;
@@ -77,7 +73,15 @@ export const Icon = styled.div`
 
   :hover,
   :focus {
-    fill: ${p =>
-      p.effect === "remove" ? p.theme.colors.red : p.theme.colors.blue};
+    fill: ${p => {
+      switch (p.effect) {
+        case "remove":
+          return p.theme.colors.red;
+        case "github":
+          return p.theme.colors.gray3;
+        default:
+          return p.theme.colors.blue;
+      }
+    }};
   }
 `;
