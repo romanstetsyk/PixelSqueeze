@@ -2,7 +2,7 @@
 
 Web application that lets you compress images and convert to .webp / .jpg / .png file formats in browser.
 
-<img src="https://i.imgur.com/4ddCEpg.png" alt="Screenshot" width="500">
+<img src="https://i.imgur.com/4ddCEpg.png" alt="Screenshot" width="650">
 
 ## Installation
 
