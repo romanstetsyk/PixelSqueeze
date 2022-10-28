@@ -38,3 +38,9 @@ yarn start
 - Dark theme
 - AVIF support
 - Resize images
+
+## Issues
+
+Not all browsers support the quality parameter and conversion to webp type. Consult [this table](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob#browser_compatibility) for browser compatibility.
+
+Use desktop Chrome, Firefox, Opera, or Edge browsers for optimal performance.
