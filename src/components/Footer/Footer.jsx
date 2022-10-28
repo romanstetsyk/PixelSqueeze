@@ -18,7 +18,7 @@ export const Footer = () => {
           <IconContainer
             effect="github"
             as="a"
-            href="https://github.com/"
+            href="https://github.com/romanstetsyk/PixelSqueeze"
             target="_blank"
             aria-label="GitHub"
             rel="noreferrer noopener"
