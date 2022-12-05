@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Box } from "components/App/App.styled";
 
 export const Card = ({ title, text }) => {
@@ -7,4 +8,9 @@ export const Card = ({ title, text }) => {
       <p>{text}</p>
     </Box>
   );
+};
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
