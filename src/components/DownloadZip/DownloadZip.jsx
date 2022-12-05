@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { createFileName } from "utils";
@@ -29,4 +30,8 @@ export const DownloadZip = ({ compressedFiles }) => {
       </Button>
     </Box>
   );
+};
+
+DownloadZip.propTypes = {
+  compressedFiles: PropTypes.arrayOf(PropTypes.instanceOf(File)).isRequired,
 };
