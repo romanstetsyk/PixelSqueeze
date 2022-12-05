@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Box } from "components/App/App.styled";
 import { Button } from "components/Button";
 import { useEffect, useState } from "react";
@@ -68,4 +69,10 @@ export const ImageForm = ({
       <Button type="submit">Update</Button>
     </Box>
   );
+};
+
+ImageForm.propTypes = {
+  activeFileOriginal: PropTypes.instanceOf(File).isRequired,
+  activeFileCompressed: PropTypes.instanceOf(File).isRequired,
+  changeCompressedFile: PropTypes.func.isRequired,
 };
