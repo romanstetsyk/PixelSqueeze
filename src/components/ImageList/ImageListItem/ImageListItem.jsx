@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { BsDownload, BsTrash } from "react-icons/bs";
 import { Box, Icon, IconContainer } from "components/App/App.styled";
 import { calcSizeChange, createFileName, formatFileSize } from "utils";
@@ -70,4 +71,12 @@ export const ImageListItem = ({
       )}
     </ListItem>
   );
+};
+
+ImageListItem.propTypes = {
+  activeFileOriginal: PropTypes.instanceOf(File),
+  removeFile: PropTypes.func.isRequired,
+  selectFileForComparison: PropTypes.func.isRequired,
+  file: PropTypes.instanceOf(File),
+  cf: PropTypes.instanceOf(File),
 };
