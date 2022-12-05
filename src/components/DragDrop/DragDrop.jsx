@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Box, Icon } from "components/App/App.styled";
 import { Button } from "components/Button";
 import { nanoid } from "nanoid";
@@ -63,4 +64,9 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
       </Box>
     </StyledDiv>
   );
+};
+
+DragDrop.propTypes = {
+  addOriginalFiles: PropTypes.func.isRequired,
+  addCompressedFiles: PropTypes.func.isRequired,
 };
