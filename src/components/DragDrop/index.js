@@ -1,3 +1,1 @@
-import { DragDrop } from "./DragDrop";
-
-export { DragDrop };
+export { DragDrop } from "./DragDrop";

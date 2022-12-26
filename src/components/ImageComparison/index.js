@@ -1,3 +1,1 @@
-import { ImageComparison } from "./ImageComparison";
-
-export { ImageComparison };
+export { ImageComparison } from "./ImageComparison";

@@ -1,3 +1,1 @@
-import { ImageListItem } from "./ImageListItem";
-
-export { ImageListItem };
+export { ImageListItem } from "./ImageListItem";

@@ -1,3 +1,1 @@
-import { Note } from "./Note";
-
-export { Note };
+export { Note } from "./Note";

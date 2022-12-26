@@ -1,23 +1,10 @@
-import { DragDrop } from "./DragDrop";
-import { App } from "./App";
-import { ImageList } from "./ImageList";
-import { ImageComparison } from "./ImageComparison";
-import { DownloadZip } from "./DownloadZip";
-import { Logo } from "./Logo";
-import { Card } from "./Card";
-import { Footer } from "./Footer";
-import { Header } from "./Header";
-import { Button } from "./Button";
-
-export {
-  DragDrop,
-  App,
-  ImageList,
-  ImageComparison,
-  DownloadZip,
-  Logo,
-  Card,
-  Footer,
-  Header,
-  Button,
-};
+export { DragDrop } from "./DragDrop";
+export { App } from "./App";
+export { ImageList } from "./ImageList";
+export { ImageComparison } from "./ImageComparison";
+export { DownloadZip } from "./DownloadZip";
+export { Logo } from "./Logo";
+export { Card } from "./Card";
+export { Footer } from "./Footer";
+export { Header } from "./Header";
+export { Button } from "./Button";

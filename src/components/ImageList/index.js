@@ -1,3 +1,1 @@
-import { ImageList } from "./ImageList";
-
-export { ImageList };
+export { ImageList } from "./ImageList";

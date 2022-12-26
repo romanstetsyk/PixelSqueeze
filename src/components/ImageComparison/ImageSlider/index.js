@@ -1,3 +1,1 @@
-import { ImageSlider } from "./ImageSlider";
-
-export { ImageSlider };
+export { ImageSlider } from "./ImageSlider";

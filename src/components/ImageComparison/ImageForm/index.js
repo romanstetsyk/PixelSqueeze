@@ -1,3 +1,1 @@
-import { ImageForm } from "./ImageForm";
-
-export { ImageForm };
+export { ImageForm } from "./ImageForm";

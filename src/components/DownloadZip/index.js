@@ -1,3 +1,1 @@
-import { DownloadZip } from "./DownloadZip";
-
-export { DownloadZip };
+export { DownloadZip } from "./DownloadZip";
