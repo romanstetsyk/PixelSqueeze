@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { compress } from "utils";
 import { Label } from "./ImageForm.styled";
 
-export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
+export const ImageForm = ({ activeFile, updateFile }) => {
   const [quality, setQuality] = useState(activeFile.quality);
   const [type, setType] = useState(activeFile.type);
 
@@ -31,7 +31,7 @@ export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
       quality,
       type
     );
-    updateUrlAndSize(activeFile.id, await urlComp, await sizeComp);
+    updateFile({ id: activeFile.id, urlComp, sizeComp, quality, type });
   };
 
   // Make quality change when props change
@@ -76,5 +76,5 @@ export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
 
 ImageForm.propTypes = {
   activeFile: PropTypes.object.isRequired,
-  updateUrlAndSize: PropTypes.func.isRequired,
+  updateFile: PropTypes.func.isRequired,
 };

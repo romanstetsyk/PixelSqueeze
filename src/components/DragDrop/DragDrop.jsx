@@ -8,34 +8,30 @@ import { compress } from "utils";
 import { StyledDiv } from "./DragDrop.styled";
 import { BsUpload } from "react-icons/bs";
 
-export const DragDrop = ({ addFiles, updateUrlAndSize }) => {
+export const DragDrop = ({ addFiles, updateFile }) => {
   const DEFAULT_QUALITY = 1;
   const DEFAULT_TYPE = "image/jpeg";
 
   const onDrop = useCallback(
     // Always an array
     acceptedFiles => {
+      const [quality, type] = [DEFAULT_QUALITY, DEFAULT_TYPE];
+
       const filesArr = acceptedFiles.map(blob => {
         const id = nanoid();
         const urlOrig = URL.createObjectURL(blob);
         const urlComp = null;
-        const quality = DEFAULT_QUALITY;
-        const type = DEFAULT_TYPE;
         const sizeComp = null;
         return { id, urlOrig, urlComp, quality, type, sizeComp, blob };
       });
       addFiles(filesArr);
 
-      filesArr.forEach(async file => {
-        const { sizeComp, urlComp } = await compress(
-          file.blob,
-          DEFAULT_QUALITY,
-          DEFAULT_TYPE
-        );
-        updateUrlAndSize(file.id, await urlComp, await sizeComp);
+      filesArr.forEach(async ({ id, blob }) => {
+        const { sizeComp, urlComp } = await compress(blob, quality, type);
+        updateFile({ id, urlComp, sizeComp, quality, type });
       });
     },
-    [addFiles, updateUrlAndSize]
+    [addFiles, updateFile]
   );
 
   const onDropRejected = e => console.log(e);
@@ -80,5 +76,5 @@ export const DragDrop = ({ addFiles, updateUrlAndSize }) => {
 
 DragDrop.propTypes = {
   addFiles: PropTypes.func.isRequired,
-  updateUrlAndSize: PropTypes.func.isRequired,
+  updateFile: PropTypes.func.isRequired,
 };

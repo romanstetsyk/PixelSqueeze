@@ -4,7 +4,7 @@ import "img-comparison-slider";
 import { ImageForm } from "./ImageForm";
 import { ImageSlider } from "./ImageSlider";
 
-export const ImageComparison = ({ activeFile, updateUrlAndSize }) => {
+export const ImageComparison = ({ activeFile, updateFile }) => {
   return (
     <Box
       display="flex"
@@ -17,7 +17,7 @@ export const ImageComparison = ({ activeFile, updateUrlAndSize }) => {
     >
       <ImageForm
         activeFile={activeFile}
-        updateUrlAndSize={updateUrlAndSize}
+        updateFile={updateFile}
       />
 
       <ImageSlider
@@ -30,5 +30,5 @@ export const ImageComparison = ({ activeFile, updateUrlAndSize }) => {
 
 ImageComparison.propTypes = {
   activeFile: PropTypes.object,
-  updateUrlAndSize: PropTypes.func,
+  updateFile: PropTypes.func,
 };

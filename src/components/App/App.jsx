@@ -18,12 +18,12 @@ export const App = () => {
     setFiles(prev => [...prev, ...files]);
   };
 
-  const updateUrlAndSize = (id, urlComp, sizeComp) => {
+  const updateFile = ({ id, urlComp, sizeComp, quality, type }) => {
     setFiles(prev =>
       prev.map(f => {
         if (f.id === id) {
           URL.revokeObjectURL(f.urlComp);
-          return { ...f, urlComp, sizeComp };
+          return { ...f, urlComp, sizeComp, quality, type };
         } else {
           return f;
         }
@@ -57,7 +57,7 @@ export const App = () => {
 
       <Section as="main">
         <Container>
-          <DragDrop addFiles={addFiles} updateUrlAndSize={updateUrlAndSize} />
+          <DragDrop addFiles={addFiles} updateFile={updateFile} />
         </Container>
 
         <Container>
@@ -79,7 +79,7 @@ export const App = () => {
           <Container id="preview">
             <ImageComparison
               activeFile={files.find(file => file.id === activeFileId)}
-              updateUrlAndSize={updateUrlAndSize}
+              updateFile={updateFile}
             />
           </Container>
         )}
