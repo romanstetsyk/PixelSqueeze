@@ -7,7 +7,7 @@ import { FileName, ListItem } from "./ImageListItem.styled";
 export const ImageListItem = ({
   activeFileId,
   removeFile,
-  selectFile,
+  setActiveFileId,
   file,
 }) => {
   return (
@@ -15,10 +15,10 @@ export const ImageListItem = ({
       title="Click to compare images"
       tabIndex={0}
       active={file.id === activeFileId}
-      onClick={() => selectFile(file.id)}
+      onClick={() => setActiveFileId(file.id)}
       onKeyUp={e => {
         if (e.key === "Enter") {
-          selectFile(file.id);
+          setActiveFileId(file.id);
         }
       }}
     >
@@ -76,6 +76,6 @@ export const ImageListItem = ({
 ImageListItem.propTypes = {
   activeFileId: PropTypes.string,
   removeFile: PropTypes.func.isRequired,
-  selectFile: PropTypes.func.isRequired,
+  setActiveFileId: PropTypes.func.isRequired,
   file: PropTypes.object.isRequired,
 };

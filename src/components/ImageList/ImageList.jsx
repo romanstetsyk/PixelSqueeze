@@ -1,7 +1,7 @@
 import { List } from "./ImageList.styled";
 import { ImageListItem } from "./ImageListItem";
 
-export const ImageList = ({ files, activeFileId, removeFile, selectFile }) => {
+export const ImageList = ({ files, activeFileId, removeFile, setActiveFileId }) => {
   return (
     <List>
       {files.map(file => (
@@ -9,7 +9,7 @@ export const ImageList = ({ files, activeFileId, removeFile, selectFile }) => {
           key={file.id}
           activeFileId={activeFileId}
           removeFile={removeFile}
-          selectFile={selectFile}
+          setActiveFileId={setActiveFileId}
           file={file}
         />
       ))}

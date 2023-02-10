@@ -31,8 +31,6 @@ export const App = () => {
     );
   };
 
-  const selectFile = id => setActiveFileId(id);
-
   const removeFile = id => {
     if (activeFileId === id) setActiveFileId(null);
     setFiles(prev =>
@@ -67,7 +65,7 @@ export const App = () => {
             files={files}
             activeFileId={activeFileId}
             removeFile={removeFile}
-            selectFile={selectFile}
+            setActiveFileId={setActiveFileId}
           />
         </Container>
 
