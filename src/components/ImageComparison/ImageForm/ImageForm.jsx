@@ -7,16 +7,20 @@ import { Label } from "./ImageForm.styled";
 
 export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
   const [quality, setQuality] = useState(activeFile.quality);
-  const [format, setFormat] = useState(activeFile.type);
+  const [type, setType] = useState(activeFile.type);
 
-  const changeInputQuality = e => {
-    const val = e.currentTarget.value;
-    setQuality(val);
-  };
-
-  const changeInputFormat = e => {
-    const val = e.currentTarget.value;
-    setFormat(val);
+  const handleInputChange = e => {
+    const { name, value } = e.currentTarget;
+    switch (name) {
+      case "quality":
+        setQuality(value);
+        break;
+      case "type":
+        setType(value);
+        break;
+      default:
+        throw new Error("Invalid field name");
+    }
   };
 
   const onSubmit = async e => {
@@ -25,16 +29,15 @@ export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
     const { sizeComp, urlComp } = await compress(
       activeFile.blob,
       quality,
-      format
+      type
     );
-    console.log(urlComp);
     updateUrlAndSize(activeFile.id, await urlComp, await sizeComp);
   };
 
   // Make quality change when props change
   useEffect(() => {
     setQuality(activeFile.quality);
-    setFormat(activeFile.type);
+    setType(activeFile.type);
   }, [activeFile.quality, activeFile.type]);
 
   return (
@@ -49,7 +52,7 @@ export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
       <Label>
         <span>Quality, %:</span>
         <input
-          onChange={changeInputQuality}
+          onChange={handleInputChange}
           type="number"
           name="quality"
           min={1}
@@ -59,8 +62,8 @@ export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
         />
       </Label>
       <Label>
-        <span>Format:</span>
-        <select name="format" onChange={changeInputFormat} value={format}>
+        <span>Type:</span>
+        <select name="type" onChange={handleInputChange} value={type}>
           <option value="image/jpeg">JPG</option>
           <option value="image/webp">WebP</option>
           <option value="image/png">PNG</option>
