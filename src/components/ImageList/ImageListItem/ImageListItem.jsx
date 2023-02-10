@@ -39,7 +39,7 @@ export const ImageListItem = ({
       </Box>
       <p>
         {formatFileSize(file.blob.size)} &rarr;{" "}
-        {!file.urlComp ? (
+        {!file.sizeComp ? (
           "Loading"
         ) : (
           <>
@@ -49,7 +49,7 @@ export const ImageListItem = ({
         )}
       </p>
 
-      {file.urlComp && (
+      {file.sizeComp && (
         <Box
           display="flex"
           justifyContent="space-between"
