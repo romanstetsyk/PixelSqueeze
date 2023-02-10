@@ -15,12 +15,19 @@ export const App = () => {
   const [activeFileId, setActiveFileId] = useState(null);
 
   const addFiles = files => {
-    setFiles(prev => prev.concat(files));
+    setFiles(prev => [...prev, ...files]);
   };
 
   const updateUrlAndSize = (id, urlComp, sizeComp) => {
     setFiles(prev =>
-      prev.map(obj => (obj.id === id ? { ...obj, urlComp, sizeComp } : obj))
+      prev.map(f => {
+        if (f.id === id) {
+          URL.revokeObjectURL(f.urlComp);
+          return { ...f, urlComp, sizeComp };
+        } else {
+          return f;
+        }
+      })
     );
   };
 
