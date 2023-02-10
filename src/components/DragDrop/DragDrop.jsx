@@ -13,8 +13,8 @@ export const DragDrop = ({ addFiles, updateUrlAndSize }) => {
   const DEFAULT_TYPE = "image/jpeg";
 
   const onDrop = useCallback(
+    // Always an array
     acceptedFiles => {
-      // Add ids
       const filesArr = acceptedFiles.map(blob => {
         const id = nanoid();
         const urlOrig = URL.createObjectURL(blob);
