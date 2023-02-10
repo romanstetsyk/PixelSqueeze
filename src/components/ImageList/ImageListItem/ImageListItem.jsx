@@ -5,28 +5,27 @@ import { calcSizeChange, createFileName, formatFileSize } from "utils";
 import { FileName, ListItem } from "./ImageListItem.styled";
 
 export const ImageListItem = ({
-  activeFileOriginal,
+  activeFileId,
   removeFile,
-  selectFileForComparison,
+  selectFile,
   file,
-  cf,
 }) => {
   return (
     <ListItem
       title="Click to compare images"
       tabIndex={0}
-      active={file.id === activeFileOriginal?.id}
-      onClick={() => selectFileForComparison(file.id)}
+      active={file.id === activeFileId}
+      onClick={() => selectFile(file.id)}
       onKeyUp={e => {
         if (e.key === "Enter") {
-          selectFileForComparison(file.id);
+          selectFile(file.id);
         }
       }}
     >
       <Box display="flex" justifyContent="space-between" gap={4}>
-        <FileName>{file.name}</FileName>
+        <FileName>{file.blob.name}</FileName>
         <IconContainer
-          effect="remove"
+          action="remove"
           as="button"
           type="button"
           onClick={e => {
@@ -39,31 +38,32 @@ export const ImageListItem = ({
         </IconContainer>{" "}
       </Box>
       <p>
-        {formatFileSize(file.size)} &rarr;{" "}
-        {!cf ? (
+        {formatFileSize(file.blob.size)} &rarr;{" "}
+        {!file.urlComp ? (
           "Loading"
         ) : (
           <>
-            {formatFileSize(cf.size)} ({calcSizeChange(file.size, cf.size)})
+            {formatFileSize(file.sizeComp)} (
+            {calcSizeChange(file.blob.size, file.sizeComp)})
           </>
         )}
       </p>
 
-      {cf && (
+      {file.urlComp && (
         <Box
           display="flex"
           justifyContent="space-between"
           gap={4}
           alignItems="center"
         >
-          <span>Quality: {cf.quality}% </span>
-          <span>{cf.type}</span>
+          <span>Quality: {file.quality}% </span>
+          <span>{file.type}</span>
           <IconContainer
             as="a"
             title="Download compressed file"
             onClick={e => e.stopPropagation()}
-            href={URL.createObjectURL(cf)}
-            download={createFileName(cf)}
+            href={file.urlComp}
+            download={createFileName(file.blob.name, file.quality, file.type)}
           >
             <Icon as={BsDownload} />
           </IconContainer>
@@ -74,9 +74,8 @@ export const ImageListItem = ({
 };
 
 ImageListItem.propTypes = {
-  activeFileOriginal: PropTypes.instanceOf(File),
+  activeFileId: PropTypes.string,
   removeFile: PropTypes.func.isRequired,
-  selectFileForComparison: PropTypes.func.isRequired,
-  file: PropTypes.instanceOf(File),
-  cf: PropTypes.instanceOf(File),
+  selectFile: PropTypes.func.isRequired,
+  file: PropTypes.object.isRequired,
 };

@@ -88,7 +88,7 @@ export const IconContainer = styled.div`
   :hover svg,
   :focus svg {
     fill: ${p => {
-      switch (p.effect) {
+      switch (p.action) {
         case "remove":
           return p.theme.colors.red;
         case "github":

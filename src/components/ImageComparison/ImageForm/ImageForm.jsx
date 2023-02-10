@@ -5,13 +5,9 @@ import { useEffect, useState } from "react";
 import { compress } from "utils";
 import { Label } from "./ImageForm.styled";
 
-export const ImageForm = ({
-  activeFileOriginal,
-  activeFileCompressed,
-  changeCompressedFile,
-}) => {
-  const [quality, setQuality] = useState(activeFileCompressed.quality);
-  const [format, setFormat] = useState(activeFileCompressed.type);
+export const ImageForm = ({ activeFile, updateUrlAndSize }) => {
+  const [quality, setQuality] = useState(activeFile.quality);
+  const [format, setFormat] = useState(activeFile.type);
 
   const changeInputQuality = e => {
     const val = e.currentTarget.value;
@@ -23,19 +19,23 @@ export const ImageForm = ({
     setFormat(val);
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
 
-    compress(activeFileOriginal, quality, format).then(clone =>
-      changeCompressedFile(activeFileCompressed.id, clone)
+    const { sizeComp, urlComp } = await compress(
+      activeFile.blob,
+      quality,
+      format
     );
+    console.log(urlComp);
+    updateUrlAndSize(activeFile.id, await urlComp, await sizeComp);
   };
 
   // Make quality change when props change
   useEffect(() => {
-    setQuality(activeFileCompressed.quality);
-    setFormat(activeFileCompressed.type);
-  }, [activeFileCompressed.quality, activeFileCompressed.type]);
+    setQuality(activeFile.quality);
+    setFormat(activeFile.type);
+  }, [activeFile.quality, activeFile.type]);
 
   return (
     <Box
@@ -72,7 +72,6 @@ export const ImageForm = ({
 };
 
 ImageForm.propTypes = {
-  activeFileOriginal: PropTypes.instanceOf(File).isRequired,
-  activeFileCompressed: PropTypes.instanceOf(File).isRequired,
-  changeCompressedFile: PropTypes.func.isRequired,
+  activeFile: PropTypes.object.isRequired,
+  updateUrlAndSize: PropTypes.func.isRequired,
 };

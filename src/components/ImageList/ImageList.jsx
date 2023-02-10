@@ -1,29 +1,18 @@
 import { List } from "./ImageList.styled";
 import { ImageListItem } from "./ImageListItem";
 
-export const ImageList = ({
-  originalFiles,
-  compressedFiles,
-  activeFileOriginal,
-  removeFile,
-  selectFileForComparison,
-}) => {
+export const ImageList = ({ files, activeFileId, removeFile, selectFile }) => {
   return (
     <List>
-      {originalFiles.map(file => {
-        const cf = compressedFiles.find(e => e.id === file.id);
-
-        return (
-          <ImageListItem
-            key={file.id}
-            activeFileOriginal={activeFileOriginal}
-            removeFile={removeFile}
-            selectFileForComparison={selectFileForComparison}
-            file={file}
-            cf={cf}
-          />
-        );
-      })}
+      {files.map(file => (
+        <ImageListItem
+          key={file.id}
+          activeFileId={activeFileId}
+          removeFile={removeFile}
+          selectFile={selectFile}
+          file={file}
+        />
+      ))}
     </List>
   );
 };

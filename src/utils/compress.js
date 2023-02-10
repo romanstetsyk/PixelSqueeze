@@ -14,10 +14,8 @@ export const compress = (file, quality, type) => {
         context.drawImage(img, 0, 0, width, height);
         canvas.toBlob(
           blob => {
-            const clone = new File([blob], file.name, { type: type });
-            clone.id = file.id;
-            clone.quality = quality;
-            ressolve(clone);
+            const f = new File([blob], file.name, { type: type });
+            ressolve({ sizeComp: f.size, urlComp: URL.createObjectURL(f) });
           },
           type,
           quality / 100 // Quality as a decimal

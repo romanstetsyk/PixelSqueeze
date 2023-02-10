@@ -1,6 +1,4 @@
-export const createFileName = file => {
-  const { name, type, quality } = file;
-
+export const createFileName = (name, quality, type) => {
   // e.g. filename.ext
   const indexOfLastDot = name.lastIndexOf(".");
   const filename = name.slice(0, indexOfLastDot);

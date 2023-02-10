@@ -8,22 +8,34 @@ import { compress } from "utils";
 import { StyledDiv } from "./DragDrop.styled";
 import { BsUpload } from "react-icons/bs";
 
-export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
-  const DEFAULT_QUALITY = 70;
+export const DragDrop = ({ addFiles, updateUrlAndSize }) => {
+  const DEFAULT_QUALITY = 1;
   const DEFAULT_TYPE = "image/jpeg";
 
   const onDrop = useCallback(
     acceptedFiles => {
-      acceptedFiles.forEach(file => (file.id = nanoid()));
-      addOriginalFiles(acceptedFiles); // Changes originalFiles state
+      // Add ids
+      const filesArr = acceptedFiles.map(blob => {
+        const id = nanoid();
+        const urlOrig = URL.createObjectURL(blob);
+        const urlComp = null;
+        const quality = DEFAULT_QUALITY;
+        const type = DEFAULT_TYPE;
+        const sizeComp = null;
+        return { id, urlOrig, urlComp, quality, type, sizeComp, blob };
+      });
+      addFiles(filesArr);
 
-      acceptedFiles.forEach(file => {
-        compress(file, DEFAULT_QUALITY, DEFAULT_TYPE).then(clone =>
-          addCompressedFiles(clone)
+      filesArr.forEach(async file => {
+        const { sizeComp, urlComp } = await compress(
+          file.blob,
+          DEFAULT_QUALITY,
+          DEFAULT_TYPE
         );
+        updateUrlAndSize(file.id, await urlComp, await sizeComp);
       });
     },
-    [addOriginalFiles, addCompressedFiles]
+    [addFiles, updateUrlAndSize]
   );
 
   const onDropRejected = e => console.log(e);
@@ -67,6 +79,6 @@ export const DragDrop = ({ addOriginalFiles, addCompressedFiles }) => {
 };
 
 DragDrop.propTypes = {
-  addOriginalFiles: PropTypes.func.isRequired,
-  addCompressedFiles: PropTypes.func.isRequired,
+  addFiles: PropTypes.func.isRequired,
+  updateUrlAndSize: PropTypes.func.isRequired,
 };

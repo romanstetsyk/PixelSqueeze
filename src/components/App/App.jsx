@@ -11,42 +11,40 @@ import { useEffect, useState } from "react";
 import { Container, Section } from "./App.styled";
 
 export const App = () => {
-  const [originalFiles, setOriginalFiles] = useState([]);
-  const [compressedFiles, setCompressedFiles] = useState([]);
-  const [activeFileOriginal, setActiveFileOriginal] = useState(null);
-  const [activeFileCompressed, setActiveFileCompressed] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [activeFileId, setActiveFileId] = useState(null);
 
-  const addOriginalFiles = files => {
-    setOriginalFiles(prev => prev.concat(files));
+  const addFiles = files => {
+    setFiles(prev => prev.concat(files));
   };
 
-  const addCompressedFiles = files => {
-    setCompressedFiles(prev => prev.concat(files));
-  };
-
-  const changeCompressedFile = (id, updFile) => {
-    setCompressedFiles(prev =>
-      prev.map(oldFile => (oldFile.id === id ? updFile : oldFile))
+  const updateUrlAndSize = (id, urlComp, sizeComp) => {
+    setFiles(prev =>
+      prev.map(obj => (obj.id === id ? { ...obj, urlComp, sizeComp } : obj))
     );
-    setActiveFileCompressed(updFile);
   };
 
-  const selectFileForComparison = id => {
-    setActiveFileOriginal(originalFiles.find(e => e.id === id));
-    setActiveFileCompressed(compressedFiles.find(e => e.id === id));
-  };
+  const selectFile = id => setActiveFileId(id);
 
   const removeFile = id => {
-    if (activeFileOriginal?.id === id) setActiveFileOriginal(null);
-    if (activeFileCompressed?.id === id) setActiveFileCompressed(null);
-    setOriginalFiles(prev => prev.filter(f => f.id !== id));
-    setCompressedFiles(prev => prev.filter(f => f.id !== id));
+    if (activeFileId === id) setActiveFileId(null);
+    setFiles(prev =>
+      prev.filter(f => {
+        if (f.id === id) {
+          URL.revokeObjectURL(f.urlComp);
+          URL.revokeObjectURL(f.urlOrig);
+          return false;
+        } else {
+          return true;
+        }
+      })
+    );
   };
 
   useEffect(() => {
     const element = document.getElementById("preview");
     if (element) element.scrollIntoView({ behavior: "smooth" });
-  }, [activeFileOriginal]);
+  }, [activeFileId]);
 
   return (
     <>
@@ -54,34 +52,29 @@ export const App = () => {
 
       <Section as="main">
         <Container>
-          <DragDrop
-            addOriginalFiles={addOriginalFiles}
-            addCompressedFiles={addCompressedFiles}
-          />
+          <DragDrop addFiles={addFiles} updateUrlAndSize={updateUrlAndSize} />
         </Container>
 
         <Container>
           <ImageList
-            originalFiles={originalFiles}
-            compressedFiles={compressedFiles}
-            activeFileOriginal={activeFileOriginal}
+            files={files}
+            activeFileId={activeFileId}
             removeFile={removeFile}
-            selectFileForComparison={selectFileForComparison}
+            selectFile={selectFile}
           />
         </Container>
 
-        {compressedFiles.length > 0 && (
+        {/* {compressedFiles.length > 0 && (
           <Container>
             <DownloadZip compressedFiles={compressedFiles} />
           </Container>
-        )}
+        )} */}
 
-        {activeFileCompressed && (
+        {activeFileId && (
           <Container id="preview">
             <ImageComparison
-              activeFileOriginal={activeFileOriginal}
-              activeFileCompressed={activeFileCompressed}
-              changeCompressedFile={changeCompressedFile}
+              activeFile={files.find(file => file.id === activeFileId)}
+              updateUrlAndSize={updateUrlAndSize}
             />
           </Container>
         )}
