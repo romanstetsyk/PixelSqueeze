@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/PixelSqueeze/static/css/main.17654e45.css",
-    "main.js": "/PixelSqueeze/static/js/main.e2c4865b.js",
+    "main.js": "/PixelSqueeze/static/js/main.f1c1db34.js",
     "index.html": "/PixelSqueeze/index.html",
     "main.17654e45.css.map": "/PixelSqueeze/static/css/main.17654e45.css.map",
-    "main.e2c4865b.js.map": "/PixelSqueeze/static/js/main.e2c4865b.js.map"
+    "main.f1c1db34.js.map": "/PixelSqueeze/static/js/main.f1c1db34.js.map"
   },
   "entrypoints": [
     "static/css/main.17654e45.css",
-    "static/js/main.e2c4865b.js"
+    "static/js/main.f1c1db34.js"
   ]
 }
