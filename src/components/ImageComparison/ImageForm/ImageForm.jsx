@@ -7,7 +7,7 @@ import { Label } from "./ImageForm.styled";
 
 export const ImageForm = ({ activeFile, updateFile }) => {
   const [quality, setQuality] = useState(activeFile.quality);
-  const [type, setType] = useState(activeFile.type);
+  const [type, setType] = useState(activeFile.blobComp.type);
 
   const handleInputChange = e => {
     const { name, value } = e.currentTarget;
@@ -26,19 +26,19 @@ export const ImageForm = ({ activeFile, updateFile }) => {
   const onSubmit = async e => {
     e.preventDefault();
 
-    const { sizeComp, urlComp } = await compress(
-      activeFile.blob,
+    const { blobComp, urlComp } = await compress(
+      activeFile.blobOrig,
       quality,
       type
     );
-    updateFile({ id: activeFile.id, urlComp, sizeComp, quality, type });
+    updateFile({ id: activeFile.id, urlComp, blobComp, quality });
   };
 
   // Make quality change when props change
   useEffect(() => {
     setQuality(activeFile.quality);
-    setType(activeFile.type);
-  }, [activeFile.quality, activeFile.type]);
+    setType(activeFile.blobComp.type);
+  }, [activeFile.quality, activeFile.blobComp.type]);
 
   return (
     <Box

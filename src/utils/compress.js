@@ -1,3 +1,5 @@
+import { createFileName } from "utils";
+
 export const compress = (file, quality, type) => {
   return new Promise((ressolve, reject) => {
     let img = new Image();
@@ -14,10 +16,9 @@ export const compress = (file, quality, type) => {
         context.drawImage(img, 0, 0, width, height);
         canvas.toBlob(
           blob => {
-            ressolve({
-              sizeComp: blob.size,
-              urlComp: URL.createObjectURL(blob),
-            });
+            const newName = createFileName(file.name, quality, type);
+            const blobComp = new File([blob], newName, { type });
+            ressolve({ blobComp, urlComp: URL.createObjectURL(blobComp) });
           },
           type,
           quality / 100 // Quality as a decimal

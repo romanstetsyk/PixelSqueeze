@@ -18,12 +18,12 @@ export const App = () => {
     setFiles(prev => [...prev, ...files]);
   };
 
-  const updateFile = ({ id, urlComp, sizeComp, quality, type }) => {
+  const updateFile = ({ id, urlComp, quality, blobComp }) => {
     setFiles(prev =>
       prev.map(f => {
         if (f.id === id) {
           URL.revokeObjectURL(f.urlComp);
-          return { ...f, urlComp, sizeComp, quality, type };
+          return { ...f, urlComp, quality, blobComp };
         } else {
           return f;
         }
@@ -69,11 +69,11 @@ export const App = () => {
           />
         </Container>
 
-        {/* {compressedFiles.length > 0 && (
+        {files.length > 0 && (
           <Container>
-            <DownloadZip compressedFiles={compressedFiles} />
+            <DownloadZip files={files} />
           </Container>
-        )} */}
+        )}
 
         {activeFileId && (
           <Container id="preview">

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { BsDownload, BsTrash } from "react-icons/bs";
 import { Box, Icon, IconContainer } from "components/App/App.styled";
-import { calcSizeChange, createFileName, formatFileSize } from "utils";
+import { calcSizeChange, formatFileSize } from "utils";
 import { FileName, ListItem } from "./ImageListItem.styled";
 
 export const ImageListItem = ({
@@ -10,27 +10,28 @@ export const ImageListItem = ({
   setActiveFileId,
   file,
 }) => {
+  const { id, blobOrig, blobComp, urlComp, quality } = file;
   return (
     <ListItem
       title="Click to compare images"
       tabIndex={0}
-      active={file.id === activeFileId}
-      onClick={() => setActiveFileId(file.id)}
+      active={id === activeFileId}
+      onClick={() => setActiveFileId(id)}
       onKeyUp={e => {
         if (e.key === "Enter") {
-          setActiveFileId(file.id);
+          setActiveFileId(id);
         }
       }}
     >
       <Box display="flex" justifyContent="space-between" gap={4}>
-        <FileName>{file.blob.name}</FileName>
+        <FileName>{blobOrig.name}</FileName>
         <IconContainer
           action="remove"
           as="button"
           type="button"
           onClick={e => {
             e.stopPropagation(); // prevent ListItem onClick to fire up
-            removeFile(file.id);
+            removeFile(id);
           }}
           title="Remove this image"
         >
@@ -38,32 +39,32 @@ export const ImageListItem = ({
         </IconContainer>{" "}
       </Box>
       <p>
-        {formatFileSize(file.blob.size)} &rarr;{" "}
-        {!file.sizeComp ? (
+        {formatFileSize(blobOrig.size)} &rarr;{" "}
+        {!blobComp ? (
           "Loading"
         ) : (
           <>
-            {formatFileSize(file.sizeComp)} (
-            {calcSizeChange(file.blob.size, file.sizeComp)})
+            {formatFileSize(blobComp.size)} (
+            {calcSizeChange(blobOrig.size, blobComp.size)})
           </>
         )}
       </p>
 
-      {file.sizeComp && (
+      {blobComp && (
         <Box
           display="flex"
           justifyContent="space-between"
           gap={4}
           alignItems="center"
         >
-          <span>Quality: {file.quality}% </span>
-          <span>{file.type}</span>
+          <span>Quality: {quality}% </span>
+          <span>{blobComp.type}</span>
           <IconContainer
             as="a"
             title="Download compressed file"
             onClick={e => e.stopPropagation()}
-            href={file.urlComp}
-            download={createFileName(file.blob.name, file.quality, file.type)}
+            href={urlComp}
+            download={blobComp.name}
           >
             <Icon as={BsDownload} />
           </IconContainer>

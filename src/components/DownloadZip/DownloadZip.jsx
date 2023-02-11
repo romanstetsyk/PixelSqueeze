@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { createFileName } from "utils";
 import { Button } from "components/Button";
 import { Box } from "components/App/App.styled";
 
-export const DownloadZip = ({ compressedFiles }) => {
+export const DownloadZip = ({ files }) => {
   const generateZip = () => {
     const zip = new JSZip();
-    compressedFiles.forEach(f => zip.file(createFileName(f), f));
+    files.forEach(f => zip.file(f.blobComp.name, f.blobComp));
     zip.generateAsync({ type: "blob" }).then(function (content) {
       saveAs(content, "example.zip");
     });
@@ -33,5 +32,5 @@ export const DownloadZip = ({ compressedFiles }) => {
 };
 
 DownloadZip.propTypes = {
-  compressedFiles: PropTypes.arrayOf(PropTypes.instanceOf(File)).isRequired,
+  files: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

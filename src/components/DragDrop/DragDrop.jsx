@@ -17,18 +17,18 @@ export const DragDrop = ({ addFiles, updateFile }) => {
     acceptedFiles => {
       const [quality, type] = [DEFAULT_QUALITY, DEFAULT_TYPE];
 
-      const filesArr = acceptedFiles.map(blob => {
+      const filesArr = acceptedFiles.map(blobOrig => {
         const id = nanoid();
-        const urlOrig = URL.createObjectURL(blob);
+        const urlOrig = URL.createObjectURL(blobOrig);
+        const blobComp = null;
         const urlComp = null;
-        const sizeComp = null;
-        return { id, urlOrig, urlComp, quality, type, sizeComp, blob };
+        return { id, urlOrig, urlComp, blobOrig, blobComp, quality };
       });
       addFiles(filesArr);
 
-      filesArr.forEach(async ({ id, blob }) => {
-        const { sizeComp, urlComp } = await compress(blob, quality, type);
-        updateFile({ id, urlComp, sizeComp, quality, type });
+      filesArr.forEach(async ({ id, blobOrig }) => {
+        const { urlComp, blobComp } = await compress(blobOrig, quality, type);
+        updateFile({ id, urlComp, quality, blobComp });
       });
     },
     [addFiles, updateFile]
